@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout2;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout4;
+import com.edevelopers.fastecom.adapter.GridViewAdapterlayout5;
 import com.edevelopers.fastecom.adapter.ListViewAdapterlayout1;
 import com.edevelopers.fastecom.adapter.MyCustomPagerAdaptor;
 import com.edevelopers.fastecom.adapter.RecyclerViewItem;
@@ -32,11 +33,12 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView gridView;
     private RecyclerView gridView1;
     private ListViewAdapterlayout1 listViewAdapter;
-    private GridViewAdapterlayout4 gridViewAdapter,gridViewAdapter1;
-    private GridViewAdapterlayout2 gridViewAdapter2;
+    private GridViewAdapterlayout4 gridViewAdapter;
+    private GridViewAdapterlayout5 gridViewAdapter1;
     private ArrayList<RecyclerViewItem> corporations;
     private ArrayList<RecyclerViewItem> operatingSystems,operatingSystems1;
     boolean isLoading = false;
+    boolean isLoading1 = false;
 
 
     @Override
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
         GridLayoutManager layoutManager1 = new GridLayoutManager(MainActivity.this, 2, GridLayoutManager.VERTICAL, false);
         gridView1.setLayoutManager(layoutManager1);
-        gridViewAdapter1 = new GridViewAdapterlayout4(MainActivity.this,operatingSystems1,anim);
+        gridViewAdapter1 = new GridViewAdapterlayout5(MainActivity.this,operatingSystems,anim);
         gridView1.setAdapter(gridViewAdapter1);
 
 
@@ -99,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
             try {
+                    operatingSystems.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
                     operatingSystems1.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
             }
             catch (Exception e){
@@ -121,11 +124,11 @@ public class MainActivity extends AppCompatActivity {
 
                 LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
 
-                if (!isLoading) {
+                if (!isLoading1) {
                     if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == operatingSystems1.size() - 1) {
                         //bottom of list!
                         loadMore();
-                        isLoading = true;
+                        isLoading1 = true;
                     }
                 }
             }
@@ -144,15 +147,14 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
 
                 if (!isLoading) {
-                    if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == operatingSystems1.size() - 1) {
+                    if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == operatingSystems.size() - 1) {
                         //bottom of list!
-                        loadMore();
+                        loadMore1();
                         isLoading = true;
                     }
                 }
             }
         });
-
     }
 
     private void loadMore() {
@@ -186,6 +188,41 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 gridViewAdapter.notifyDataSetChanged();
+                isLoading1 = false;
+            }
+        }, 2000);
+    }
+    private void loadMore1() {
+        operatingSystems.add(null);
+        gridViewAdapter1.notifyItemInserted(operatingSystems.size() - 1);
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                operatingSystems.remove(operatingSystems.size() - 1);
+                int scrollPosition = operatingSystems.size();
+                gridViewAdapter1.notifyItemRemoved(scrollPosition);
+                int currentSize = scrollPosition;
+                int nextLimit = currentSize + 8;
+
+                ArrayList<Team> fed = sgen.getdata_fromsql(MainActivity.this, "select TITLE AS col1, IMG AS col2, DATE AS col3, ID AS col4,'-' AS col5 from Head;");
+                if (fed.size() < 1) {
+                    Toast.makeText(MainActivity.this, "No Data Found", Toast.LENGTH_LONG).show();
+                }
+
+                int i = currentSize - 1;
+                while (i < nextLimit) {
+                    try {
+                        operatingSystems.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    i++;
+                }
+
+                gridViewAdapter1.notifyDataSetChanged();
                 isLoading = false;
             }
         }, 2000);
