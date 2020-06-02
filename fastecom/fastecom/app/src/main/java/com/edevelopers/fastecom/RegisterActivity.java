@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String pwd = mTextPassword.getText().toString().trim();
                 String cnf_pwd = mTextCnfPassword.getText().toString().trim();
 
-                if(pwd.equals(cnf_pwd)){
+                /*if(pwd.equals(cnf_pwd)){
                     long val = db.addUser(user,pwd);
                     if(val > 0){
                         Toast.makeText(RegisterActivity.this,"You have registered",Toast.LENGTH_SHORT).show();
@@ -59,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 else{
                     Toast.makeText(RegisterActivity.this,"Password is not matching",Toast.LENGTH_SHORT).show();
-                }
+                }*/
             }
         });
     }

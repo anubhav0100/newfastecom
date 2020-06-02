@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class DbHelper extends SQLiteOpenHelper {
-    static String DATABASE_NAME = "NEWS_NAME";
+    static String DATABASE_NAME = "fastecom_name";
     public static final String TABLE_NAME = "Notifications";
     public static final String KEY_notify = "notify";
     public static final String KEY_col1 = "col1";

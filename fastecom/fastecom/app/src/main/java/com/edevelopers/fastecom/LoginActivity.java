@@ -41,8 +41,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String user = mTextUsername.getText().toString().trim();
                 String pwd = mTextPassword.getText().toString().trim();
-                Boolean res = db.checkUser(user, pwd);
-                if(res == true)
+              //  Boolean res = db.checkUser(user, pwd);
+             /*   if(res == true)
                 {
                     Intent HomePage = new Intent(LoginActivity.this,MainActivity.class);
                     startActivity(HomePage);
@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                 else
                 {
                     Toast.makeText(LoginActivity.this,"Login Error", Toast.LENGTH_SHORT).show();
-                }
+                }*/
             }
         });
     }
