@@ -14,15 +14,10 @@
 
         <ImageView
             android:id="@+id/image"
-<<<<<<< HEAD
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/profile_image"
-=======
-            android:layout_width="match_parent"
-            android:layout_height="175dp"
->>>>>>> a80d1eb1f523d26d221831e1cb7de8788875445b
             android:layout_marginTop="5dp"
             android:contentDescription="@null"
             android:scaleType="fitXY" />

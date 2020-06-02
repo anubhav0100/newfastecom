@@ -1,1 +1,1 @@
-# news.prototype
+# fastecom
