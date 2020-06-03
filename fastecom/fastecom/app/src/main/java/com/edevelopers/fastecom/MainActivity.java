@@ -8,14 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.edevelopers.fastecom.adapter.GridViewAdapterlayout2;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout4;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout5;
 import com.edevelopers.fastecom.adapter.ListViewAdapterlayout1;
@@ -51,8 +50,13 @@ public class MainActivity extends AppCompatActivity {
         gridView = (RecyclerView) findViewById(R.id.grid);
         gridView1 = (RecyclerView) findViewById(R.id.grid1);
 
-        int i = R.drawable.ic_close_black_24dp;
-        System.out.println(i);
+        /***********************Vectors Add*********************************************************/
+        ArrayList<Integer> dr = new ArrayList<>();
+        dr.add(R.drawable.ic_close_black_24dp);
+        dr.add(R.drawable.ic_close_black_24dp);
+
+
+        /*****************************************************************************/
 
         sgen.Context = getApplicationContext();
 

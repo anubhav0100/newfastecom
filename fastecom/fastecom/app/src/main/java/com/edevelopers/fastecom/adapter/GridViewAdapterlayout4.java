@@ -38,7 +38,7 @@ public class GridViewAdapterlayout4 extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_grid2, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_grid1, parent, false);
             return new ItemViewHolder(view);
         } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.nrecycler, parent, false);
