@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.Animation;
@@ -50,7 +51,11 @@ public class MainActivity extends AppCompatActivity {
         gridView = (RecyclerView) findViewById(R.id.grid);
         gridView1 = (RecyclerView) findViewById(R.id.grid1);
 
+        int i = R.drawable.ic_close_black_24dp;
+        System.out.println(i);
+
         sgen.Context = getApplicationContext();
+
         try{
             sgen.create_tables(sgen.Context);
             sgen.savedata(sgen.Context);
