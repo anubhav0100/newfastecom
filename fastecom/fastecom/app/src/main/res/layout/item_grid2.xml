@@ -8,7 +8,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="15dp"
             app:cardElevation="5dp"
             app:cardMaxElevation="10dp"
             app:cardPreventCornerOverlap="false"
@@ -32,7 +32,7 @@
             android:textColor="#000000"
             android:textColorHint="#000000"
             android:hint="Heading"
-            android:textSize="18dp"
+            android:textSize="20dp"
             android:layout_marginRight="2dp"
             android:layout_marginLeft="2dp" />
 
@@ -47,7 +47,7 @@
             android:layout_below="@+id/text"
             android:textColor="#708090"
             android:textColorHint="#708090"
-            android:textSize="13dp"
+            android:textSize="15dp"
             android:gravity="center"/>
 
         <!--<LinearLayout

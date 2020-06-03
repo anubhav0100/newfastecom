@@ -19,9 +19,9 @@
         app:cardUseCompatPadding="true">
 
         <ImageView
-            android:id="@+id/imagehead"
-            android:layout_width="100dp"
-            android:layout_height="70dp"
+            android:id="@+id/image"
+            android:layout_width="170dp"
+            android:layout_height="120dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/logo"
             android:layout_marginTop="5dp"
@@ -32,41 +32,42 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        android:hint="Heading"
+        android:textSize="18dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginLeft="2dp"
+        android:gravity="center"/>
 
         <TextView
-            android:id="@+id/head"
-            android:layout_width="wrap_content"
+            android:id="@+id/intro"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingEnd="140dp"
-            android:gravity="center"
-            android:hint="Heading"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/body"
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/head"
+            android:hint="Introduction"
             android:layout_centerInParent="true"
             android:layout_toRightOf="@+id/image"
-            android:hint="Introduction"
+            android:layout_below="@+id/text"
             android:textColor="#708090"
             android:textColorHint="#708090"
-            android:textSize="13dp" />
+            android:textSize="13dp"
+            android:gravity="center"/>
 
         <RatingBar
-            android:layout_width="230dp"
-            android:layout_height="wrap_content" />
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:paddingEnd="140dp"
             android:hint="Rs. 345"
+            android:layout_centerInParent="true"
             android:textColor="#000000"
             android:textColorHint="#000000" />
 
@@ -83,7 +84,7 @@
             android:gravity="center"
             android:text="Add"
             android:textStyle="bold"
-            android:layout_alignParentLeft="true"/>
+            android:layout_marginTop="38dp"/>
 
 
     </LinearLayout>
