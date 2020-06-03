@@ -19,11 +19,11 @@
         <activity android:name=".activities_M.ListActivity" />
         <activity android:name=".activities_M.CheckoutActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".activities_M.ViewActivity" />
         <activity android:name=".activities_M.ExpandableList" />
         <activity android:name=".activities_M.MainLandingActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
