@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.edevelopers.fastecom.Services.VolleyExecute;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout4;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout5;
+import com.edevelopers.fastecom.adapter.GridViewAdapterlayout6;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout7;
 import com.edevelopers.fastecom.adapter.ListViewAdapterlayout1;
 import com.edevelopers.fastecom.adapter.MyCustomPagerAdaptor;
@@ -35,12 +36,14 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView gridView;
     private RecyclerView gridView1;
     private RecyclerView gridView3;
+    private RecyclerView gridView2;
     private ListViewAdapterlayout1 listViewAdapter;
     private GridViewAdapterlayout4 gridViewAdapter;
     private GridViewAdapterlayout5 gridViewAdapter1;
     private GridViewAdapterlayout7 gridViewAdapter2;
+    private GridViewAdapterlayout6 gridViewAdapter3;
     private ArrayList<RecyclerViewItem> corporations;
-    private ArrayList<RecyclerViewItem> operatingSystems,operatingSystems1,operatingSystems2;
+    private ArrayList<RecyclerViewItem> operatingSystems,operatingSystems1,operatingSystems2,operatingSystems3;
     boolean isLoading = false;
     boolean isLoading1 = false;
     Animation anim;
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         gridView = (RecyclerView) findViewById(R.id.grid);
         gridView1 = (RecyclerView) findViewById(R.id.grid1);
         gridView3 = (RecyclerView) findViewById(R.id.grid3);
+        gridView2 = (RecyclerView) findViewById(R.id.grid2);
 
         sgen.Context = getApplicationContext();
 
@@ -88,7 +92,19 @@ public class MainActivity extends AppCompatActivity {
         gridViewAdapter2 = new GridViewAdapterlayout7(MainActivity.this,operatingSystems2,anim);
         gridView3.setAdapter(gridViewAdapter2);
 
+<<<<<<< HEAD
+        GridLayoutManager layoutManager3 = new GridLayoutManager(MainActivity.this, 2, GridLayoutManager.VERTICAL, false);
+        gridView2.setLayoutManager(layoutManager3);
+        gridViewAdapter3 = new GridViewAdapterlayout6(MainActivity.this,operatingSystems,anim);
+        gridView2.setAdapter(gridViewAdapter3);
+
+
+
+
+        //initScrollListener();
+=======
         initScrollListener();
+>>>>>>> 7f0b14ea0f127eced23a6ea031e982cfefe80e2a
 
        // startActivity(new Intent(MainActivit,j8y.this, MainLandingActivity.class));
     }
@@ -109,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
         operatingSystems = new ArrayList<RecyclerViewItem>();
         operatingSystems1 = new ArrayList<RecyclerViewItem>();
         operatingSystems2 = new ArrayList<RecyclerViewItem>();
+        operatingSystems3 = new ArrayList<RecyclerViewItem>();
         for (int i = 0; i < fed.size(); i++) {
             if(i>=8){
                 break;
@@ -116,7 +133,12 @@ public class MainActivity extends AppCompatActivity {
             try {
                     operatingSystems.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
                     operatingSystems1.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+<<<<<<< HEAD
+                operatingSystems2.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+                operatingSystems3.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+=======
                     operatingSystems2.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+>>>>>>> 7f0b14ea0f127eced23a6ea031e982cfefe80e2a
 
             }
             catch (Exception e){
