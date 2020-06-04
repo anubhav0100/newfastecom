@@ -32,11 +32,13 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView listView;
     private RecyclerView gridView;
     private RecyclerView gridView1;
+    private RecyclerView gridView3;
     private ListViewAdapterlayout1 listViewAdapter;
     private GridViewAdapterlayout4 gridViewAdapter;
     private GridViewAdapterlayout5 gridViewAdapter1;
+    private GridViewAdapterlayout4 gridViewAdapter2;
     private ArrayList<RecyclerViewItem> corporations;
-    private ArrayList<RecyclerViewItem> operatingSystems,operatingSystems1;
+    private ArrayList<RecyclerViewItem> operatingSystems,operatingSystems1,operatingSystems2;
     boolean isLoading = false;
     boolean isLoading1 = false;
 
@@ -83,6 +85,12 @@ public class MainActivity extends AppCompatActivity {
         gridViewAdapter1 = new GridViewAdapterlayout5(MainActivity.this,operatingSystems,anim);
         gridView1.setAdapter(gridViewAdapter1);
 
+        GridLayoutManager layoutManager2 = new GridLayoutManager(MainActivity.this, 3, GridLayoutManager.HORIZONTAL, false);
+        gridView3.setLayoutManager(layoutManager2);
+        gridViewAdapter2 = new GridViewAdapterlayout4(MainActivity.this,operatingSystems2,anim);
+        gridView3.setAdapter(gridViewAdapter2);
+
+
 
 
         initScrollListener();
@@ -105,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
         operatingSystems = new ArrayList<RecyclerViewItem>();
         operatingSystems1 = new ArrayList<RecyclerViewItem>();
+        operatingSystems2 = new ArrayList<RecyclerViewItem>();
         for (int i = 0; i < fed.size(); i++) {
             if(i>=8){
                 break;
@@ -112,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                     operatingSystems.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
                     operatingSystems1.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+                operatingSystems2.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+
             }
             catch (Exception e){
                 e.printStackTrace();
