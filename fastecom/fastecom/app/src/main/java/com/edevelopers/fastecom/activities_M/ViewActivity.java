@@ -29,7 +29,7 @@ public class ViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_view);
 
         listView = (RecyclerView) findViewById(R.id.list);
         gridView4 = (RecyclerView) findViewById(R.id.grid4);
@@ -49,7 +49,7 @@ public class ViewActivity extends AppCompatActivity {
         setDummyData();
         @SuppressLint("ResourceType") Animation anim = AnimationUtils.loadAnimation(ViewActivity.this, R.animator.cycle);
 
-        GridLayoutManager layoutManager1 = new GridLayoutManager(ViewActivity.this, 2, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager layoutManager1 = new GridLayoutManager(ViewActivity.this, 1, GridLayoutManager.VERTICAL, false);
         gridView4.setLayoutManager(layoutManager1);
         gridViewAdapter = new GridViewAdapterlayout6(ViewActivity.this,operatingSystems,anim);
         gridView4.setAdapter(gridViewAdapter);

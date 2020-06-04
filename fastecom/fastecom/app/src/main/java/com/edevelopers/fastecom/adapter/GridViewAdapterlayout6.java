@@ -75,12 +75,13 @@ public class GridViewAdapterlayout6 extends RecyclerView.Adapter<RecyclerView.Vi
 
     protected class ItemViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageView;
-        private TextView textView;
+        private TextView textView,textView1;
 
         public ItemViewHolder(@NonNull View view) {
             super(view);
-            textView = (TextView) view.findViewById(R.id.text);
-            imageView = (ImageView) view.findViewById(R.id.image);
+            textView = (TextView) view.findViewById(R.id.head);
+            textView1 = (TextView) view.findViewById(R.id.body);
+            imageView = (ImageView) view.findViewById(R.id.imagehead);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
