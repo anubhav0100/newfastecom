@@ -1,12 +1,18 @@
 package com.edevelopers.fastecom.activities_M;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import com.edevelopers.fastecom.R;
+import com.edevelopers.fastecom.adapter.GridViewAdapterlayout6;
+import com.edevelopers.fastecom.adapter.RecyclerViewItem;
 import com.edevelopers.fastecom.models.Team;
 import com.edevelopers.fastecom.sgen;
 
@@ -14,30 +20,59 @@ import java.util.ArrayList;
 
 public class ViewActivity extends AppCompatActivity {
 
-    private TextView head,body;
-    private ImageView imageView;
+    private RecyclerView listView;
+    private RecyclerView gridView4;
+    private GridViewAdapterlayout6 gridViewAdapter;
+    private ArrayList<RecyclerViewItem> corporations;
+    private ArrayList<RecyclerViewItem> operatingSystems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view);
+        setContentView(R.layout.activity_main);
 
-        head = (TextView) findViewById(R.id.head);
-        body = (TextView) findViewById(R.id.body);
-        imageView = (ImageView) findViewById(R.id.imagehead);
+        listView = (RecyclerView) findViewById(R.id.list);
+        gridView4 = (RecyclerView) findViewById(R.id.grid4);
 
-        ArrayList<Team> mfed = getdata();
+        sgen.Context = getApplicationContext();
 
-        for(int i = 0;i< mfed.size();i++){
-            head.setText(mfed.get(i).getcol1());
-            imageView.setImageBitmap(sgen.Base64ToImage(mfed.get(i).getcol2()));
-            body.setText(mfed.get(i).getcol5());
+        try{
+            sgen.create_tables(sgen.Context);
+            sgen.savedata(sgen.Context);
+        }catch(Exception e){
+            e.printStackTrace();
         }
 
+        listView.setHasFixedSize(true);
+        gridView4.setHasFixedSize(true);
+
+        setDummyData();
+        @SuppressLint("ResourceType") Animation anim = AnimationUtils.loadAnimation(ViewActivity.this, R.animator.cycle);
+
+        GridLayoutManager layoutManager1 = new GridLayoutManager(ViewActivity.this, 2, GridLayoutManager.VERTICAL, false);
+        gridView4.setLayoutManager(layoutManager1);
+        gridViewAdapter = new GridViewAdapterlayout6(ViewActivity.this,operatingSystems,anim);
+        gridView4.setAdapter(gridViewAdapter);
+        
     }
 
-    private ArrayList<Team> getdata(){
-        ArrayList<Team> fed = sgen.getdata_fromsql(ViewActivity.this, "select TITLE AS col1, IMG AS col2, DATE AS col3, ID AS col4,DESCRIPTION AS col5 from Head where ID = '"+sgen.viewId+"';");
-        return fed;
+    private void setDummyData() {
+        ArrayList<Team> fed = sgen.getdata_fromsql(this, "select TITLE AS col1, IMG AS col2, DATE AS col3, ID AS col4,'-' AS col5 from Head;");
+        if (fed.size() < 1) {
+            Toast.makeText(this, "No Data Found", Toast.LENGTH_LONG).show();
+        }
+
+        operatingSystems = new ArrayList<RecyclerViewItem>();
+        for (int i = 0; i < fed.size(); i++) {
+            if(i>=8){
+                break;
+            }
+            try {
+                operatingSystems.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+               }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
     }
 }
