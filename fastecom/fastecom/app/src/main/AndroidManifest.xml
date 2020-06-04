@@ -22,8 +22,8 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".activities_M.ViewActivity" />
         <activity android:name=".activities_M.ExpandableList" />
-        <activity android:name=".activities_M.MainLandingActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".activities_M.MainLandingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
