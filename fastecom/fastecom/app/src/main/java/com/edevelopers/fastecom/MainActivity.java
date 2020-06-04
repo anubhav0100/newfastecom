@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout4;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout5;
+import com.edevelopers.fastecom.adapter.GridViewAdapterlayout7;
 import com.edevelopers.fastecom.adapter.ListViewAdapterlayout1;
 import com.edevelopers.fastecom.adapter.MyCustomPagerAdaptor;
 import com.edevelopers.fastecom.adapter.RecyclerViewItem;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ListViewAdapterlayout1 listViewAdapter;
     private GridViewAdapterlayout4 gridViewAdapter;
     private GridViewAdapterlayout5 gridViewAdapter1;
-    private GridViewAdapterlayout4 gridViewAdapter2;
+    private GridViewAdapterlayout7 gridViewAdapter2;
     private ArrayList<RecyclerViewItem> corporations;
     private ArrayList<RecyclerViewItem> operatingSystems,operatingSystems1,operatingSystems2;
     boolean isLoading = false;
@@ -51,14 +52,7 @@ public class MainActivity extends AppCompatActivity {
         listView = (RecyclerView) findViewById(R.id.list);
         gridView = (RecyclerView) findViewById(R.id.grid);
         gridView1 = (RecyclerView) findViewById(R.id.grid1);
-
-        /***********************Vectors Add*********************************************************/
-        ArrayList<Integer> dr = new ArrayList<>();
-        dr.add(R.drawable.ic_close_black_24dp);
-        dr.add(R.drawable.ic_close_black_24dp);
-
-
-        /*****************************************************************************/
+        gridView3 = (RecyclerView) findViewById(R.id.grid3);
 
         sgen.Context = getApplicationContext();
 
@@ -72,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setHasFixedSize(true);
         gridView.setHasFixedSize(true);
         gridView1.setHasFixedSize(true);
+        gridView3.setHasFixedSize(true);
         setDummyData();
         @SuppressLint("ResourceType") Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.animator.cycle);
 
@@ -85,9 +80,9 @@ public class MainActivity extends AppCompatActivity {
         gridViewAdapter1 = new GridViewAdapterlayout5(MainActivity.this,operatingSystems,anim);
         gridView1.setAdapter(gridViewAdapter1);
 
-        GridLayoutManager layoutManager2 = new GridLayoutManager(MainActivity.this, 3, GridLayoutManager.HORIZONTAL, false);
+        GridLayoutManager layoutManager2 = new GridLayoutManager(MainActivity.this, 1, GridLayoutManager.HORIZONTAL, false);
         gridView3.setLayoutManager(layoutManager2);
-        gridViewAdapter2 = new GridViewAdapterlayout4(MainActivity.this,operatingSystems2,anim);
+        gridViewAdapter2 = new GridViewAdapterlayout7(MainActivity.this,operatingSystems2,anim);
         gridView3.setAdapter(gridViewAdapter2);
 
 

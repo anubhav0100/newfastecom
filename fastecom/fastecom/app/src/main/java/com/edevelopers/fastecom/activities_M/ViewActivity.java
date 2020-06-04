@@ -53,7 +53,7 @@ public class ViewActivity extends AppCompatActivity {
         gridView4.setLayoutManager(layoutManager1);
         gridViewAdapter = new GridViewAdapterlayout6(ViewActivity.this,operatingSystems,anim);
         gridView4.setAdapter(gridViewAdapter);
-        
+
     }
 
     private void setDummyData() {
