@@ -92,20 +92,15 @@ public class MainActivity extends AppCompatActivity {
         gridViewAdapter2 = new GridViewAdapterlayout7(MainActivity.this,operatingSystems2,anim);
         gridView3.setAdapter(gridViewAdapter2);
 
-<<<<<<< HEAD
         GridLayoutManager layoutManager3 = new GridLayoutManager(MainActivity.this, 2, GridLayoutManager.VERTICAL, false);
         gridView2.setLayoutManager(layoutManager3);
-        gridViewAdapter3 = new GridViewAdapterlayout6(MainActivity.this,operatingSystems,anim);
+        gridViewAdapter3 = new GridViewAdapterlayout6(MainActivity.this,operatingSystems3,anim);
         gridView2.setAdapter(gridViewAdapter3);
 
 
 
 
         //initScrollListener();
-=======
-        initScrollListener();
->>>>>>> 7f0b14ea0f127eced23a6ea031e982cfefe80e2a
-
        // startActivity(new Intent(MainActivit,j8y.this, MainLandingActivity.class));
     }
 
@@ -133,12 +128,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                     operatingSystems.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
                     operatingSystems1.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
-<<<<<<< HEAD
                 operatingSystems2.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
                 operatingSystems3.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
-=======
-                    operatingSystems2.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
->>>>>>> 7f0b14ea0f127eced23a6ea031e982cfefe80e2a
 
             }
             catch (Exception e){
