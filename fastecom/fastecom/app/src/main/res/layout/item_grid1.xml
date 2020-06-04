@@ -121,5 +121,7 @@
 
     </LinearLayout>
 
+    <View style="@style/Divider.Horizontal"/>
+
 </LinearLayout>
 
