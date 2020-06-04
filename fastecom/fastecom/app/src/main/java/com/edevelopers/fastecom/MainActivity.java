@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = (RecyclerView) findViewById(R.id.list);
         gridView = (RecyclerView) findViewById(R.id.grid);
         gridView1 = (RecyclerView) findViewById(R.id.grid1);
         gridView3 = (RecyclerView) findViewById(R.id.grid3);
@@ -70,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        listView.setHasFixedSize(true);
         gridView.setHasFixedSize(true);
         gridView1.setHasFixedSize(true);
         gridView3.setHasFixedSize(true);
@@ -92,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         gridViewAdapter2 = new GridViewAdapterlayout7(MainActivity.this,operatingSystems2,anim);
         gridView3.setAdapter(gridViewAdapter2);
 
-        GridLayoutManager layoutManager3 = new GridLayoutManager(MainActivity.this, 2, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager layoutManager3 = new GridLayoutManager(MainActivity.this, 1, GridLayoutManager.VERTICAL, false);
         gridView2.setLayoutManager(layoutManager3);
         gridViewAdapter3 = new GridViewAdapterlayout6(MainActivity.this,operatingSystems3,anim);
         gridView2.setAdapter(gridViewAdapter3);
