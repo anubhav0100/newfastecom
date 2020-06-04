@@ -20,6 +20,7 @@ import com.edevelopers.fastecom.adapter.GridViewAdapterlayout4;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout5;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout6;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout7;
+import com.edevelopers.fastecom.adapter.GridViewAdapterlayout8;
 import com.edevelopers.fastecom.adapter.ListViewAdapterlayout1;
 import com.edevelopers.fastecom.adapter.MyCustomPagerAdaptor;
 import com.edevelopers.fastecom.adapter.RecyclerViewItem;
@@ -34,14 +35,12 @@ public class MainActivity extends AppCompatActivity {
     private MyCustomPagerAdaptor myCustomPagerAdapter;
     private RecyclerView listView;
     private RecyclerView gridView;
-    private RecyclerView gridView1;
-    private RecyclerView gridView3;
-    private RecyclerView gridView2;
+    private RecyclerView gridView1,gridView2,gridView3;
     private ListViewAdapterlayout1 listViewAdapter;
     private GridViewAdapterlayout4 gridViewAdapter;
     private GridViewAdapterlayout5 gridViewAdapter1;
     private GridViewAdapterlayout7 gridViewAdapter2;
-    private GridViewAdapterlayout6 gridViewAdapter3;
+    private GridViewAdapterlayout8 gridViewAdapter3;
     private ArrayList<RecyclerViewItem> corporations;
     private ArrayList<RecyclerViewItem> operatingSystems,operatingSystems1,operatingSystems2,operatingSystems3;
     boolean isLoading = false;
@@ -92,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
         GridLayoutManager layoutManager3 = new GridLayoutManager(MainActivity.this, 1, GridLayoutManager.VERTICAL, false);
         gridView2.setLayoutManager(layoutManager3);
-        gridViewAdapter3 = new GridViewAdapterlayout6(MainActivity.this,operatingSystems3,anim);
+        gridViewAdapter3 = new GridViewAdapterlayout8(MainActivity.this,operatingSystems3,anim);
         gridView2.setAdapter(gridViewAdapter3);
 
 
