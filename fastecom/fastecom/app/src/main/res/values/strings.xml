@@ -25,4 +25,7 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="already_registered">Already Registered?</string>
     <string name="welcome_user">Welcome User</string>
+    <string name="title_activity_side_drawer">SideDrawerActivity</string>
+    <string name="title_activity_home_dr">HomeDrActivity</string>
+    <string name="title_activity_mainq">MainqActivity</string>
 </resources>
