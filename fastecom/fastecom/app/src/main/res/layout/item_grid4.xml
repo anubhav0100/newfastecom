@@ -58,8 +58,14 @@
             android:textSize="13dp" />
 
         <RatingBar
-            android:layout_width="230dp"
-            android:layout_height="wrap_content" />
+            android:id="@+id/MyRating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rating="3.5"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:stepSize="0.1" />
 
         <TextView
             android:layout_width="match_parent"
