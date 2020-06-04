@@ -22,18 +22,18 @@ public class VolleyExecute {
         void onSuccess(ArrayList<Team> teams);
     }
 
-    public static void volleydynamicgetfun(String cocd, String mid, String psquery, String srchtext, Context context, final VolleyCallback callback){
+    public static void volleydynamicgetfun(Context context, String col1, String col2, String col3, String col4, String col5, final VolleyCallback callback){
         RequestQueue queue= Volley.newRequestQueue(context);
         final ArrayList<Team> fed = new ArrayList<>();
         String url = "http://wservice.skyinfy.com/hdfiles/getlist";
 
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.accumulate("col1", cocd);
-            jsonObject.accumulate("col2", mid);
-            jsonObject.accumulate("col3", psquery);
-            jsonObject.accumulate("col4", srchtext);
-            jsonObject.accumulate("col5", "-");
+            jsonObject.accumulate("col1", col1);
+            jsonObject.accumulate("col2", col2);
+            jsonObject.accumulate("col3", col3);
+            jsonObject.accumulate("col4", col4);
+            jsonObject.accumulate("col5", col5);
         } catch (JSONException e) {
             e.printStackTrace();
         }
