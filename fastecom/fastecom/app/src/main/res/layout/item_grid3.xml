@@ -40,8 +40,14 @@
         android:layout_marginLeft="2dp" />
 
     <RatingBar
-        android:layout_width="match_parent"
+        android:id="@+id/MyRating"
+        style="?android:attr/ratingBarStyleIndicator"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:rating="3.5"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:stepSize="0.1"
         />
 
     <TextView
