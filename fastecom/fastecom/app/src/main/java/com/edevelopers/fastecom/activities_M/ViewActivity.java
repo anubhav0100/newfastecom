@@ -26,6 +26,8 @@ public class ViewActivity extends AppCompatActivity {
         body = (TextView) findViewById(R.id.body);
         imageView = (ImageView) findViewById(R.id.imagehead);
 
+
+
         ArrayList<Team> mfed = getdata();
 
         for(int i = 0;i< mfed.size();i++){
@@ -33,7 +35,6 @@ public class ViewActivity extends AppCompatActivity {
             imageView.setImageBitmap(sgen.Base64ToImage(mfed.get(i).getcol2()));
             body.setText(mfed.get(i).getcol5());
         }
-
     }
 
     private ArrayList<Team> getdata(){

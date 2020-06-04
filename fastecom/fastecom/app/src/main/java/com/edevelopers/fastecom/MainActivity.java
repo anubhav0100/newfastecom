@@ -50,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
         gridView = (RecyclerView) findViewById(R.id.grid);
         gridView1 = (RecyclerView) findViewById(R.id.grid1);
 
+
         /***********************Vectors Add*********************************************************/
         ArrayList<Integer> dr = new ArrayList<>();
         dr.add(R.drawable.ic_close_black_24dp);
         dr.add(R.drawable.ic_close_black_24dp);
-
 
         /*****************************************************************************/
 
