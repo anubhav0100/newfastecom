@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.edevelopers.fastecom.Services.VolleyExecute;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout4;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout5;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout6;
@@ -45,8 +46,10 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<RecyclerViewItem> operatingSystems,operatingSystems1,operatingSystems2,operatingSystems3;
     boolean isLoading = false;
     boolean isLoading1 = false;
+    Animation anim;
 
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         gridView1.setHasFixedSize(true);
         gridView3.setHasFixedSize(true);
         setDummyData();
-        @SuppressLint("ResourceType") Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.animator.cycle);
+        anim = AnimationUtils.loadAnimation(MainActivity.this, R.animator.cycle);
 
         GridLayoutManager layoutManager = new GridLayoutManager(MainActivity.this, 1, GridLayoutManager.HORIZONTAL, false);
         gridView.setLayoutManager(layoutManager);
@@ -89,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         gridViewAdapter2 = new GridViewAdapterlayout7(MainActivity.this,operatingSystems2,anim);
         gridView3.setAdapter(gridViewAdapter2);
 
+<<<<<<< HEAD
         GridLayoutManager layoutManager3 = new GridLayoutManager(MainActivity.this, 2, GridLayoutManager.VERTICAL, false);
         gridView2.setLayoutManager(layoutManager3);
         gridViewAdapter3 = new GridViewAdapterlayout6(MainActivity.this,operatingSystems,anim);
@@ -98,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         //initScrollListener();
+=======
+        initScrollListener();
+>>>>>>> 7f0b14ea0f127eced23a6ea031e982cfefe80e2a
 
        // startActivity(new Intent(MainActivit,j8y.this, MainLandingActivity.class));
     }
@@ -126,8 +133,12 @@ public class MainActivity extends AppCompatActivity {
             try {
                     operatingSystems.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
                     operatingSystems1.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+<<<<<<< HEAD
                 operatingSystems2.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
                 operatingSystems3.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+=======
+                    operatingSystems2.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+>>>>>>> 7f0b14ea0f127eced23a6ea031e982cfefe80e2a
 
             }
             catch (Exception e){
@@ -135,6 +146,106 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    //Online Fetch
+    private void onlinefetch(){
+        operatingSystems = new ArrayList<RecyclerViewItem>();
+        operatingSystems1 = new ArrayList<RecyclerViewItem>();
+        operatingSystems2 = new ArrayList<RecyclerViewItem>();
+        //Grid View 1
+        VolleyExecute.volleydynamicgetfun(MainActivity.this, "", "", "", "", "", new VolleyExecute.VolleyCallback() {
+            @Override
+            public void onSuccess(ArrayList<Team> teams) {
+                ArrayList<Team> fed = teams;
+                for (int i = 0; i < fed.size(); i++) {
+                    if(i>=8){
+                        break;
+                    }
+                    try {
+                        operatingSystems.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+
+                GridLayoutManager layoutManager = new GridLayoutManager(MainActivity.this, 1, GridLayoutManager.HORIZONTAL, false);
+                gridView.setLayoutManager(layoutManager);
+                gridViewAdapter = new GridViewAdapterlayout4(MainActivity.this,operatingSystems1,anim);
+                gridView.setAdapter(gridViewAdapter);
+
+
+            }
+        });
+        //Grid View 2
+        VolleyExecute.volleydynamicgetfun(MainActivity.this, "", "", "", "", "", new VolleyExecute.VolleyCallback() {
+            @Override
+            public void onSuccess(ArrayList<Team> teams) {
+                ArrayList<Team> fed = teams;
+                for (int i = 0; i < fed.size(); i++) {
+                    if(i>=8){
+                        break;
+                    }
+                    try {
+                        operatingSystems1.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+                GridLayoutManager layoutManager1 = new GridLayoutManager(MainActivity.this, 2, GridLayoutManager.VERTICAL, false);
+                gridView1.setLayoutManager(layoutManager1);
+                gridViewAdapter1 = new GridViewAdapterlayout5(MainActivity.this,operatingSystems,anim);
+                gridView1.setAdapter(gridViewAdapter1);
+
+            }
+        });
+        //Grid View 3
+        VolleyExecute.volleydynamicgetfun(MainActivity.this, "", "", "", "", "", new VolleyExecute.VolleyCallback() {
+            @Override
+            public void onSuccess(ArrayList<Team> teams) {
+                ArrayList<Team> fed = teams;
+                for (int i = 0; i < fed.size(); i++) {
+                    if(i>=8){
+                        break;
+                    }
+                    try {
+                        operatingSystems2.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+                GridLayoutManager layoutManager2 = new GridLayoutManager(MainActivity.this, 1, GridLayoutManager.HORIZONTAL, false);
+                gridView3.setLayoutManager(layoutManager2);
+                gridViewAdapter2 = new GridViewAdapterlayout7(MainActivity.this,operatingSystems2,anim);
+                gridView3.setAdapter(gridViewAdapter2);
+            }
+        });
+        //Grid View 4 Load 40 and more on scroll
+        VolleyExecute.volleydynamicgetfun(MainActivity.this, "", "", "", "", "", new VolleyExecute.VolleyCallback() {
+            @Override
+            public void onSuccess(ArrayList<Team> teams) {
+                ArrayList<Team> fed = teams;
+                for (int i = 0; i < fed.size(); i++) {
+                    if(i>=8){
+                        break;
+                    }
+                    try {
+                        operatingSystems2.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+                GridLayoutManager layoutManager2 = new GridLayoutManager(MainActivity.this, 1, GridLayoutManager.HORIZONTAL, false);
+                gridView3.setLayoutManager(layoutManager2);
+                gridViewAdapter2 = new GridViewAdapterlayout7(MainActivity.this,operatingSystems2,anim);
+                gridView3.setAdapter(gridViewAdapter2);
+            }
+        });
+    }
+
 
     private void initScrollListener() {
         gridView.addOnScrollListener(new RecyclerView.OnScrollListener() {
