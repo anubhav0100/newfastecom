@@ -16,9 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.edevelopers.fastecom.R;
-import com.edevelopers.fastecom.adapter.GridViewAdapterlayout1;
-import com.edevelopers.fastecom.adapter.GridViewAdapterlayout2;
-import com.edevelopers.fastecom.adapter.ListViewAdapterlayout1;
+import com.edevelopers.fastecom.adapter.GridViewAdapterlayout5;
 import com.edevelopers.fastecom.adapter.RecyclerViewItem;
 import com.edevelopers.fastecom.models.Team;
 import com.edevelopers.fastecom.sgen;
@@ -40,14 +38,10 @@ public class Account_Frag extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private RecyclerView listView;
     private RecyclerView gridView;
-    private RecyclerView gridView1;
-    private ListViewAdapterlayout1 listViewAdapter;
-    private GridViewAdapterlayout1 gridViewAdapter;
-    private GridViewAdapterlayout2 gridViewAdapter2;
+    private GridViewAdapterlayout5 gridViewAdapter;
     private ArrayList<RecyclerViewItem> corporations;
-    private ArrayList<RecyclerViewItem> operatingSystems,operatingSystems1;
+    private ArrayList<RecyclerViewItem> operatingSystems;
 
 
     public Account_Frag() {
@@ -87,14 +81,12 @@ public class Account_Frag extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_account_, container, false);
 
-        listView = (RecyclerView) v.findViewById(R.id.list);
         gridView = (RecyclerView) v.findViewById(R.id.grid);
-        gridView1 = (RecyclerView) v.findViewById(R.id.grid1);
 
-        listView.setHasFixedSize(true);
         gridView.setHasFixedSize(true);
-        gridView1.setHasFixedSize(true);
+
         setDummyData();
+
         @SuppressLint("ResourceType") Animation anim= AnimationUtils.loadAnimation(getContext(), R.animator.cycle);
 
         //set layout manager and adapter for "ListView"
@@ -106,13 +98,9 @@ public class Account_Frag extends Fragment {
         //set layout manager and adapter for "GridView"
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 1);
         gridView.setLayoutManager(layoutManager);
-        gridViewAdapter = new GridViewAdapterlayout1(getActivity(),operatingSystems,anim);
+        gridViewAdapter = new GridViewAdapterlayout5(getActivity(),operatingSystems,anim);
         gridView.setAdapter(gridViewAdapter);
 
-        GridLayoutManager layoutManager1 = new GridLayoutManager(getContext(), 1);
-        gridView1.setLayoutManager(layoutManager1);
-        gridViewAdapter2 = new GridViewAdapterlayout2(getActivity(),operatingSystems1,anim);
-        gridView1.setAdapter(gridViewAdapter2);
         return v;
     }
 
@@ -129,22 +117,17 @@ public class Account_Frag extends Fragment {
 
         }*/
         operatingSystems = new ArrayList<RecyclerViewItem>();
-        operatingSystems1 = new ArrayList<RecyclerViewItem>();
-        for (int i = 0; i < fed.size(); i++) {
 
+        for (int i = 0; i < fed.size(); i++) {
+            if(i>=8) {
+                break;
+            }
             try {
-                if(fed.get(i).getcol4().trim().toString().equals("1")){
                     operatingSystems.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
                 }
-                else {
-                    operatingSystems1.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
-                }
-            }
             catch (Exception e){
                 e.printStackTrace();
             }
-
-
         }
     }
 
