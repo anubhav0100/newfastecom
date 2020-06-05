@@ -40,7 +40,10 @@
         <activity android:name=".activities_M.CheckoutActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".activities_M.ViewActivity" />
+        <activity android:name=".activities_M.ViewActivity"
+            android:parentActivityName=".MainActivity"
+            >
+        </activity>
         <activity android:name=".activities_M.ExpandableList" />
         <activity android:name=".MainActivity" />
         <activity android:name=".activities_M.MainLandingActivity" >

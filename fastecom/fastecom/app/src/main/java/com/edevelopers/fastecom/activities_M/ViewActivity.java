@@ -30,6 +30,7 @@ public class ViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         listView = (RecyclerView) findViewById(R.id.list);
         gridView4 = (RecyclerView) findViewById(R.id.grid4);
