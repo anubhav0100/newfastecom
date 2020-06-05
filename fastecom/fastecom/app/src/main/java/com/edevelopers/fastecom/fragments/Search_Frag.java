@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.edevelopers.fastecom.R;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout1;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout5;
+import com.edevelopers.fastecom.adapter.GridViewAdapterlayout9;
 import com.edevelopers.fastecom.adapter.RecyclerViewItem;
 import com.edevelopers.fastecom.models.Team;
 import com.edevelopers.fastecom.sgen;
@@ -39,7 +40,7 @@ public class Search_Frag extends Fragment {
     private String mParam1;
     private String mParam2;
     private RecyclerView gridView;
-    private GridViewAdapterlayout5 gridViewAdapter;
+    private GridViewAdapterlayout9 gridViewAdapter;
     private ArrayList<RecyclerViewItem> corporations;
     private ArrayList<RecyclerViewItem> operatingSystems;
 
@@ -90,7 +91,7 @@ public class Search_Frag extends Fragment {
 
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         gridView.setLayoutManager(layoutManager);
-        gridViewAdapter = new GridViewAdapterlayout5(getActivity(),operatingSystems,anim);
+        gridViewAdapter = new GridViewAdapterlayout9(getActivity(),operatingSystems,anim);
         gridView.setAdapter(gridViewAdapter);
 
         return v;
