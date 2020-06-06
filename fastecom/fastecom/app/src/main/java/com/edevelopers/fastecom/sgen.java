@@ -421,7 +421,7 @@ public class sgen {
                     "('Fries','06/06/2020','Set IMG')," +
                     "('Ice Cream','06/06/2020','Set IMG')");
             
-            sgen.exc_sqlite(context,"INSERT INTO Category(P_NAME,P_PRICE,CATEGORY,DESCRIPTION,P_PRIORITY,P_QUANTITY,DATE,IMG) VALUES" +
+            sgen.exc_sqlite(context,"INSERT INTO Products(P_NAME,P_PRICE,CATEGORY,DESCRIPTION,P_PRIORITY,P_QUANTITY,DATE,IMG) VALUES" +
                     "('Cheese Potato Pops','299.00','Fries','DESCRIPTION','1','1','06/06/2020','Set IMG')," +
                     "('','','','DESCRIPTION','1','1','06/06/2020','Set IMG')," +
                     "('','','','DESCRIPTION','1','1','06/06/2020','Set IMG')," +
