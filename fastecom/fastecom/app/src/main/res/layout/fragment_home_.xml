@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"/>
 
 
-                <ImageView
+               <!-- <ImageView
                     android:id="@+id/btnlogout"
                     android:layout_margin="5dp"
                     android:layout_width="80dp"
@@ -86,7 +86,7 @@
                     android:scaleType="fitXY"
                     android:layout_alignParentRight="true"
                     tools:ignore="RtlCompat">
-                </ImageView>
+                </ImageView>-->
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

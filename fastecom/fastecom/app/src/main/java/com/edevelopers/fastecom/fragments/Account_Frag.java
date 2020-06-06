@@ -81,54 +81,7 @@ public class Account_Frag extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_account_, container, false);
 
-        gridView = (RecyclerView) v.findViewById(R.id.grid);
-
-        gridView.setHasFixedSize(true);
-
-        setDummyData();
-
-        @SuppressLint("ResourceType") Animation anim= AnimationUtils.loadAnimation(getContext(), R.animator.cycle);
-
-        //set layout manager and adapter for "ListView"
-       /* LinearLayoutManager horizontalManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        listView.setLayoutManager(horizontalManager);
-        listViewAdapter = new ListViewAdapterlayout1(getActivity(),corporations);
-        listView.setAdapter(listViewAdapter);*/
-
-        //set layout manager and adapter for "GridView"
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 1);
-        gridView.setLayoutManager(layoutManager);
-        gridViewAdapter = new GridViewAdapterlayout5(getActivity(),operatingSystems,anim);
-        gridView.setAdapter(gridViewAdapter);
-
         return v;
-    }
-
-    private void setDummyData() {
-        ArrayList<Team> fed = sgen.getdata_fromsql(getContext(), "select TITLE AS col1, IMG AS col2, DATE AS col3, ID AS col4,'-' AS col5 from Head;");
-        if (fed.size() < 1) {
-            Toast.makeText(getContext(), "No Data Found", Toast.LENGTH_LONG).show();
-        }
-
-        /*corporations = new ArrayList<RecyclerViewItem>();
-        for (int i = 0; i < fed.size(); i++) {
-
-            corporations.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()),fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
-
-        }*/
-        operatingSystems = new ArrayList<RecyclerViewItem>();
-
-        for (int i = 0; i < fed.size(); i++) {
-            if(i>=8) {
-                break;
-            }
-            try {
-                    operatingSystems.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
-                }
-            catch (Exception e){
-                e.printStackTrace();
-            }
-        }
     }
 
     @Override
