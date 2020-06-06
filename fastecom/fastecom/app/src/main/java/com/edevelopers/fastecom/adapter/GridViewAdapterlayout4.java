@@ -38,7 +38,7 @@ public class GridViewAdapterlayout4 extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_grid1, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_grid6, parent, false);
             return new ItemViewHolder(view);
         } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.nrecycler, parent, false);
@@ -79,7 +79,7 @@ public class GridViewAdapterlayout4 extends RecyclerView.Adapter<RecyclerView.Vi
 
         public ItemViewHolder(@NonNull View view) {
             super(view);
-            textView = (TextView) view.findViewById(R.id.text);
+         //   textView = (TextView) view.findViewById(R.id.text);
             imageView = (ImageView) view.findViewById(R.id.image);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -111,7 +111,7 @@ public class GridViewAdapterlayout4 extends RecyclerView.Adapter<RecyclerView.Vi
     private void populateItemRows(ItemViewHolder viewHolder, int position) {
 
         viewHolder.imageView.setImageBitmap(mItemList.get(position).getBitmapId());
-        viewHolder.textView.setText(mItemList.get(position).getName());
+      //  viewHolder.textView.setText(mItemList.get(position).getName());
     }
 
 
