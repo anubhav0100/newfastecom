@@ -1,17 +1,28 @@
 package com.edevelopers.fastecom.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import com.edevelopers.fastecom.R;
+import com.edevelopers.fastecom.adapter.GridViewAdapterlayout9;
+import com.edevelopers.fastecom.adapter.RecyclerViewItem;
+import com.edevelopers.fastecom.models.Team;
 import com.edevelopers.fastecom.sgen;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +39,11 @@ public class CartFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private RecyclerView gridView;
+    private GridViewAdapterlayout9 gridViewAdapter;
+    private ArrayList<RecyclerViewItem> corporations;
+    private ArrayList<RecyclerViewItem> operatingSystems;
 
     public CartFragment() {
         // Required empty public constructor
@@ -66,7 +82,37 @@ public class CartFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_cart, container, false);
 
+        gridView = (RecyclerView) v.findViewById(R.id.grid);
+
+        gridView.setHasFixedSize(true);
+        setDummyData();
+        @SuppressLint("ResourceType") Animation anim= AnimationUtils.loadAnimation(getContext(), R.animator.cycle);
+
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+        gridView.setLayoutManager(layoutManager);
+        gridViewAdapter = new GridViewAdapterlayout9(getActivity(),operatingSystems,anim);
+        gridView.setAdapter(gridViewAdapter);
+
         return v;
+    }
+
+    private void setDummyData() {
+        ArrayList<Team> fed = sgen.getdata_fromsql(getContext(), "select P_ID AS col1, IMG AS col2, C_ID AS col3, ID AS col4,'-' AS col5 from Cart;");
+        if (fed.size() < 1) {
+            Toast.makeText(getContext(), "No Data Found", Toast.LENGTH_LONG).show();
+        }
+
+        operatingSystems = new ArrayList<RecyclerViewItem>();
+        for (int i = 0; i < fed.size(); i++) {
+            if(i>=8) {
+                break;
+            }
+            try {
+                operatingSystems.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -78,5 +124,18 @@ public class CartFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    private String saveToCart(){
+        String status = "";
+        try{
+            String Query = "INSERT INTO Cart(P_ID,C_ID,DATE) VALUES('','','')";
+            sgen.exc_sqlite(getContext(),Query);
+            status = "Success";
+        }catch (Exception e){
+            status = "Failed";
+            e.printStackTrace();
+        }
+        return status;
     }
 }

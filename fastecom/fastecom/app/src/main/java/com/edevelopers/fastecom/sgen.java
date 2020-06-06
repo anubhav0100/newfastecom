@@ -401,8 +401,8 @@ public class sgen {
     }
 
     public static void create_tables( android.content.Context context) {
-        sgen.exc_sqlite(context, "CREATE TABLE if not exists Head(ID INTEGER PRIMARY KEY AUTOINCREMENT,TITLE TEXT,IMG TEXT,DATE TEXT,DESCRIPTION TEXT)");
-        sgen.exc_sqlite(context, "CREATE TABLE if not exists Cart(ID INTEGER PRIMARY KEY AUTOINCREMENT,P_ID TEXT,C_ID TEXT,DATE TEXT,DESCRIPTION TEXT)");
+        sgen.exc_sqlite(context, "CREATE TABLE if not exists Head(ID INTEGER PRIMARY KEY AUTOINCREMENT,C_ID TEXT,IMG TEXT,NAME TEXT,EMAIL TEXT,MOBILE TEXT,LOGDATE TEXT)");
+        sgen.exc_sqlite(context, "CREATE TABLE if not exists Cart(ID INTEGER PRIMARY KEY AUTOINCREMENT,P_ID TEXT,C_ID TEXT,DATE TEXT)");
         sgen.exc_sqlite(context, "CREATE TABLE if not exists Category(ID INTEGER PRIMARY KEY AUTOINCREMENT,CA_NAME TEXT,DATE TEXT,IMG TEXT)");
         sgen.exc_sqlite(context, "CREATE TABLE if not exists Products(ID INTEGER PRIMARY KEY AUTOINCREMENT,P_NAME TEXT,P_PRICE TEXT,CATEGORY TEXT,DESCRIPTION TEXT,P_PRIORITY TEXT,P_QUANTITY TEXT,DATE TEXT,IMG TEXT)");
     }
@@ -410,16 +410,16 @@ public class sgen {
     public static void savedata(android.content.Context context){
         try{
             sgen.exc_sqlite(context,"INSERT INTO Category(CA_NAME,DATE,IMG) VALUES" +
-                    "('North Indian','06/06/2020','Set IMG')," +
-                    "('South Indian','06/06/2020','Set IMG')," +
-                    "('Punjabi','06/06/2020','Set IMG')," +
-                    "('Pizza','06/06/2020','Set IMG')," +
-                    "('Burger','06/06/2020','Set IMG')," +
-                    "('Chinese','06/06/2020','Set IMG')," +
-                    "('Mithai','06/06/2020','Set IMG')," +
-                    "('Biryani','06/06/2020','Set IMG')," +
-                    "('Fries','06/06/2020','Set IMG')," +
-                    "('Ice Cream','06/06/2020','Set IMG')");
+                    "('North Indian','06/06/2020','2131165388')," +
+                    "('South Indian','06/06/2020','2131165414')," +
+                    "('Punjabi','06/06/2020','2131165409')," +
+                    "('Pizza','06/06/2020','2131165401')," +
+                    "('Burger','06/06/2020','2131165289')," +
+                    "('Chinese','06/06/2020','2131165297')," +
+                    "('Mithai','06/06/2020','2131165401')," +
+                    "('Biryani','06/06/2020','2131165279')," +
+                    "('Fries','06/06/2020','2131165327')," +
+                    "('Ice Cream','06/06/2020','2131165372')");
             
             sgen.exc_sqlite(context,"INSERT INTO Products(P_NAME,P_PRICE,CATEGORY,DESCRIPTION,P_PRIORITY,P_QUANTITY,DATE,IMG) VALUES" +
                     "('Cheese Potato Pops','299.00','Fries','DESCRIPTION','1','1','06/06/2020','Set IMG')," +
