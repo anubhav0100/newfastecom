@@ -27,14 +27,13 @@
 
         <TextView
             android:id="@+id/text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000000"
             android:textColorHint="#000000"
             android:hint="Heading"
             android:textSize="20dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginLeft="2dp" />
+            android:gravity="center"/>
 
 
         <TextView
