@@ -7,7 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
-    <com.satechology.skyinfy.classes.AnimatedGifImageView
+    <com.edevelopers.fastecom.classes.AnimatedGifImageView
         android:id="@+id/animatedGifImageView"
         android:layout_width="40dp"
         android:layout_height="40dp"

@@ -1,14 +1,19 @@
 package com.edevelopers.fastecom.fragments;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
@@ -32,10 +37,13 @@ import com.edevelopers.fastecom.adapter.GridViewAdapterlayout4;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout5;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout7;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout8;
+import com.edevelopers.fastecom.adapter.GridViewAdapterlayout9;
 import com.edevelopers.fastecom.adapter.ListViewAdapterlayout1;
 import com.edevelopers.fastecom.adapter.MyCustomPagerAdaptor;
 import com.edevelopers.fastecom.adapter.RecyclerViewItem;
+import com.edevelopers.fastecom.classes.AnimatedGifImageView;
 import com.edevelopers.fastecom.models.Team;
+import com.google.android.gms.common.util.concurrent.HandlerExecutor;
 import com.google.android.material.tabs.TabLayout;
 import com.edevelopers.fastecom.sgen;
 
@@ -64,14 +72,15 @@ public class Home_Frag extends Fragment {
     private MyCustomPagerAdaptor myCustomPagerAdapter;
     private RecyclerView listView;
     private RecyclerView gridView;
-    private RecyclerView gridView1,gridView2,gridView3;
+    private RecyclerView gridView1,gridView2,gridView3,gridView4;
     private ListViewAdapterlayout1 listViewAdapter;
     private GridViewAdapterlayout4 gridViewAdapter;
     private GridViewAdapterlayout5 gridViewAdapter1;
     private GridViewAdapterlayout7 gridViewAdapter2;
     private GridViewAdapterlayout8 gridViewAdapter3;
+    private GridViewAdapterlayout9 gridViewAdapter4;
     private ArrayList<RecyclerViewItem> corporations;
-    private ArrayList<RecyclerViewItem> operatingSystems,operatingSystems1,operatingSystems2,operatingSystems3;
+    private ArrayList<RecyclerViewItem> operatingSystems,operatingSystems1,operatingSystems2,operatingSystems3,operatingSystems4;
     boolean isLoading = false;
     boolean isLoading1 = false;
     Animation anim;
@@ -118,6 +127,7 @@ public class Home_Frag extends Fragment {
         gridView1 = (RecyclerView) v.findViewById(R.id.grid1);
         gridView3 = (RecyclerView) v.findViewById(R.id.grid3);
         gridView2 = (RecyclerView) v.findViewById(R.id.grid2);
+        gridView4 = (RecyclerView) v.findViewById(R.id.grid4);
 
         gridView.setHasFixedSize(true);
         gridView1.setHasFixedSize(true);
@@ -128,6 +138,7 @@ public class Home_Frag extends Fragment {
         setdata2();
         setdata3();
         setdata4();
+        setdata5();
 
        /* GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1, GridLayoutManager.HORIZONTAL, false);
         gridView.setLayoutManager(layoutManager);
@@ -259,6 +270,24 @@ public class Home_Frag extends Fragment {
         gridView2.setLayoutManager(layoutManager3);
         gridViewAdapter3 = new GridViewAdapterlayout8(getActivity(),operatingSystems3,anim);
         gridView2.setAdapter(gridViewAdapter3);
+    }
+    private void setdata5(){
+        operatingSystems4 = new ArrayList<RecyclerViewItem>();
+        ArrayList<Team> fed = sgen.getdata_fromsql(getActivity(), "select CA_NAME AS col1, IMG AS col2, DATE AS col3, ID AS col4,'-' AS col5 from Category;");
+        for (int i = 0; i < fed.size(); i++) {
+            try {
+                Bitmap icon = BitmapFactory.decodeResource(getActivity().getResources(),Integer.parseInt(fed.get(i).getcol2().toString()));
+                operatingSystems4.add(new RecyclerViewItem(icon, fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1, GridLayoutManager.HORIZONTAL, false);
+        gridView4.setLayoutManager(layoutManager);
+        gridViewAdapter4 = new GridViewAdapterlayout9(getActivity(),operatingSystems4,anim);
+        gridView4.setAdapter(gridViewAdapter4);
     }
 
     //Online Fetch
@@ -476,5 +505,23 @@ public class Home_Frag extends Fragment {
                 isLoading = false;
             }
         }, 2000);
+    }
+
+    private void show_Progress(final String event) {
+
+        final Dialog dialogP = new Dialog(getActivity());
+        dialogP.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogP.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialogP.setContentView(R.layout.dialog_progress1);
+        //  dialog.setCancelable(true);
+
+
+        AnimatedGifImageView animatedGifImageView = ((AnimatedGifImageView) dialogP.findViewById(R.id.animatedGifImageView));
+        animatedGifImageView.setAnimatedGif(R.raw.ajax,
+                AnimatedGifImageView.TYPE.FIT_CENTER);
+
+
+        dialogP.show();
+
     }
 }

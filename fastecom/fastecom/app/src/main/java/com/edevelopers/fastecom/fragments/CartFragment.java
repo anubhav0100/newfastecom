@@ -2,6 +2,8 @@ package com.edevelopers.fastecom.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +19,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.edevelopers.fastecom.R;
+import com.edevelopers.fastecom.adapter.GridViewAdapterlayout4;
+import com.edevelopers.fastecom.adapter.GridViewAdapterlayout8;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout9;
 import com.edevelopers.fastecom.adapter.RecyclerViewItem;
 import com.edevelopers.fastecom.models.Team;
@@ -40,11 +44,12 @@ public class CartFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private RecyclerView gridView;
+    private RecyclerView gridView,gridView1;
     private GridViewAdapterlayout9 gridViewAdapter;
+    private GridViewAdapterlayout8 gridViewAdapter1;
     private ArrayList<RecyclerViewItem> corporations;
-    private ArrayList<RecyclerViewItem> operatingSystems;
-
+    private ArrayList<RecyclerViewItem> operatingSystems,operatingSystems1;
+    Animation anim;
     public CartFragment() {
         // Required empty public constructor
     }
@@ -76,6 +81,7 @@ public class CartFragment extends Fragment {
         }
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,38 +89,52 @@ public class CartFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_cart, container, false);
 
         gridView = (RecyclerView) v.findViewById(R.id.grid);
-
+        gridView1 = (RecyclerView) v.findViewById(R.id.grid1);
+        anim= AnimationUtils.loadAnimation(getContext(), R.animator.cycle);
         gridView.setHasFixedSize(true);
-        setDummyData();
-        @SuppressLint("ResourceType") Animation anim= AnimationUtils.loadAnimation(getContext(), R.animator.cycle);
-
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
-        gridView.setLayoutManager(layoutManager);
-        gridViewAdapter = new GridViewAdapterlayout9(getActivity(),operatingSystems,anim);
-        gridView.setAdapter(gridViewAdapter);
+        setdata1();
+        setdata2();
 
         return v;
     }
 
-    private void setDummyData() {
-        ArrayList<Team> fed = sgen.getdata_fromsql(getContext(), "select P_ID AS col1, IMG AS col2, C_ID AS col3, ID AS col4,'-' AS col5 from Cart;");
-        if (fed.size() < 1) {
-            Toast.makeText(getContext(), "No Data Found", Toast.LENGTH_LONG).show();
-        }
-
+    private void setdata1(){
         operatingSystems = new ArrayList<RecyclerViewItem>();
+        ArrayList<Team> fed = sgen.getdata_fromsql(getActivity(), "select CA_NAME AS col1, IMG AS col2, DATE AS col3, ID AS col4,'-' AS col5 from Category;");
         for (int i = 0; i < fed.size(); i++) {
-            if(i>=8) {
-                break;
-            }
             try {
-                operatingSystems.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
-            } catch (Exception e) {
+                Bitmap icon = BitmapFactory.decodeResource(getActivity().getResources(),Integer.parseInt(fed.get(i).getcol2().toString()));
+                operatingSystems.add(new RecyclerViewItem(icon, fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+            }
+            catch (Exception e){
                 e.printStackTrace();
             }
         }
+
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1, GridLayoutManager.HORIZONTAL, false);
+        gridView.setLayoutManager(layoutManager);
+        gridViewAdapter = new GridViewAdapterlayout9(getActivity(),operatingSystems,anim);
+        gridView.setAdapter(gridViewAdapter);
     }
 
+    private void setdata2(){
+        operatingSystems1 = new ArrayList<RecyclerViewItem>();
+        ArrayList<Team> fed = sgen.getdata_fromsql(getActivity(), "select CA_NAME AS col1, IMG AS col2, DATE AS col3, ID AS col4,'-' AS col5 from Category;");
+        for (int i = 0; i < fed.size(); i++) {
+            try {
+                Bitmap icon = BitmapFactory.decodeResource(getActivity().getResources(),Integer.parseInt(fed.get(i).getcol2().toString()));
+                operatingSystems1.add(new RecyclerViewItem(icon, fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
+        gridView1.setLayoutManager(layoutManager);
+        gridViewAdapter1 = new GridViewAdapterlayout8(getActivity(),operatingSystems1,anim);
+        gridView1.setAdapter(gridViewAdapter1);
+    }
     @Override
     public void onAttach(@NonNull Context context) {
         sgen.backview = "Cart_Frag";
