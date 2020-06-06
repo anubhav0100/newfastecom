@@ -410,16 +410,16 @@ public class sgen {
     public static void savedata(android.content.Context context){
         try{
             sgen.exc_sqlite(context,"INSERT INTO Category(CA_NAME,DATE,IMG) VALUES" +
-                    "('North Indian','06/06/2020','2131165388')," +
-                    "('South Indian','06/06/2020','2131165414')," +
-                    "('Punjabi','06/06/2020','2131165409')," +
-                    "('Pizza','06/06/2020','2131165401')," +
-                    "('Burger','06/06/2020','2131165289')," +
-                    "('Chinese','06/06/2020','2131165297')," +
-                    "('Mithai','06/06/2020','2131165401')," +
-                    "('Biryani','06/06/2020','2131165279')," +
-                    "('Fries','06/06/2020','2131165327')," +
-                    "('Ice Cream','06/06/2020','2131165372')");
+                    "('North Indian','06/06/2020','"+R.drawable.north_indian+"')," +
+                    "('South Indian','06/06/2020','"+ R.drawable.south_indian +"')," +
+                    "('Punjabi','06/06/2020','"+R.drawable.sarson_ka_saag+"')," +
+                    "('Pizza','06/06/2020','"+R.drawable.pizza+"')," +
+                    "('Burger','06/06/2020','"+R.drawable.burger+"')," +
+                    "('Chinese','06/06/2020','"+R.drawable.chinese_food+"')," +
+                    "('Mithai','06/06/2020','"+R.drawable.mithai+"')," +
+                    "('Biryani','06/06/2020','"+R.drawable.biryani+"')," +
+                    "('Fries','06/06/2020','"+R.drawable.fries+"')," +
+                    "('Ice Cream','06/06/2020','"+R.drawable.ice_cream+"')");
             
             sgen.exc_sqlite(context,"INSERT INTO Products(P_NAME,P_PRICE,CATEGORY,DESCRIPTION,P_PRIORITY,P_QUANTITY,DATE,IMG) VALUES" +
                     "('Cheese Potato Pops','299.00','Fries','in Special Combo','1','1','06/06/2020','Set IMG')," +
