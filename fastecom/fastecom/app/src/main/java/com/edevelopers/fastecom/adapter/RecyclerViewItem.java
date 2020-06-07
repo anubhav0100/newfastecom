@@ -1,6 +1,7 @@
 package com.edevelopers.fastecom.adapter;
 
 import android.graphics.Bitmap;
+import android.widget.ImageButton;
 
 public class RecyclerViewItem {
 
@@ -9,6 +10,7 @@ public class RecyclerViewItem {
     private String module3;
     private String module1;
     private String module2;
+    private String cart;
 
     public RecyclerViewItem(Bitmap bitmap, String name, String module3) {
         this.bitmap = bitmap;
@@ -21,6 +23,14 @@ public class RecyclerViewItem {
         this.name = name;
         this.module3 = module3;
         this.module1 = module1;
+    }
+
+    public RecyclerViewItem(Bitmap bitmap, String name, String module3,String module1,String cart){
+        this.bitmap = bitmap;
+        this.name = name;
+        this.module3 = module3;
+        this.module1 = module1;
+        this.cart = cart;
     }
 
     public Bitmap getBitmapId() {
@@ -40,5 +50,11 @@ public class RecyclerViewItem {
     public String getModule2() {
         return module2;
     }
+    public String getCart() {
+        return cart;
+    }
 
+    public void setCart(String cart) {
+        this.cart = cart;
+    }
 }

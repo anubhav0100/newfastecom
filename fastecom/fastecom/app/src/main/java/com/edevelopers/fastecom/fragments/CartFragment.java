@@ -19,6 +19,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.edevelopers.fastecom.R;
+import com.edevelopers.fastecom.adapter.CartGridViewAdapterlayout;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout4;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout8;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout9;
@@ -46,7 +47,7 @@ public class CartFragment extends Fragment {
 
     private RecyclerView gridView,gridView1;
     private GridViewAdapterlayout9 gridViewAdapter;
-    private GridViewAdapterlayout8 gridViewAdapter1;
+    private CartGridViewAdapterlayout gridViewAdapter1;
     private ArrayList<RecyclerViewItem> corporations;
     private ArrayList<RecyclerViewItem> operatingSystems,operatingSystems1;
     Animation anim;
@@ -123,7 +124,7 @@ public class CartFragment extends Fragment {
         for (int i = 0; i < fed.size(); i++) {
             try {
                 Bitmap icon = BitmapFactory.decodeResource(getActivity().getResources(),Integer.parseInt(fed.get(i).getcol2().toString()));
-                operatingSystems1.add(new RecyclerViewItem(icon, fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+                operatingSystems1.add(new RecyclerViewItem(icon, fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString(),"fries",String.valueOf(i)));
             }
             catch (Exception e){
                 e.printStackTrace();
@@ -132,7 +133,7 @@ public class CartFragment extends Fragment {
 
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
         gridView1.setLayoutManager(layoutManager);
-        gridViewAdapter1 = new GridViewAdapterlayout8(getActivity(),operatingSystems1,anim);
+        gridViewAdapter1 = new CartGridViewAdapterlayout(getActivity(),operatingSystems1,anim);
         gridView1.setAdapter(gridViewAdapter1);
     }
     @Override
