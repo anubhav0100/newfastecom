@@ -141,7 +141,7 @@ public class CartGridViewAdapterlayout extends RecyclerView.Adapter<RecyclerView
                     }catch (Exception e){
                         e.printStackTrace();
                     }
-                } 
+                }
             }
         });
     }
