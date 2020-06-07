@@ -73,32 +73,40 @@
                 android:textSize="15sp"
                 android:textColor="#708090"/>
 
-                <TextView
-                    android:id="@+id/reorder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Reorder"
-                    android:textSize="15sp"
-                    android:textColor="#BF360C"
-                    android:paddingEnd="45dp"
-                    android:paddingStart="45dp"
-                    android:paddingBottom="6dp"
-                    android:paddingTop="6dp"
-                    android:layout_marginStart="130dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/red_box"
-                    android:gravity="center"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="bottom">
 
                 <RatingBar
                     android:id="@+id/MyRating"
                     style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_gravity="bottom"
                     android:rating="3.5"
                     android:isIndicator="true"
                     android:numStars="5"
                     android:stepSize="0.1" />
+
+                <TextView
+                    android:id="@+id/reorder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/red_box"
+                    android:paddingStart="45dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="45dp"
+                    android:paddingBottom="6dp"
+                    android:text="Reorder"
+                    android:textColor="#BF360C"
+                    android:textSize="15sp" />
+
+            </androidx.cardview.widget.CardView>
 
 
         </LinearLayout>
