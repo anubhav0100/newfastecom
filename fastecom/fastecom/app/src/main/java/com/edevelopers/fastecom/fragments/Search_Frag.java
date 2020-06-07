@@ -2,6 +2,8 @@ package com.edevelopers.fastecom.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +45,7 @@ public class Search_Frag extends Fragment {
     private GridViewAdapterlayout9 gridViewAdapter;
     private ArrayList<RecyclerViewItem> corporations;
     private ArrayList<RecyclerViewItem> operatingSystems;
+    Animation anim;
 
     public Search_Frag() {
         // Required empty public constructor
@@ -76,6 +79,7 @@ public class Search_Frag extends Fragment {
         }
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,16 +89,31 @@ public class Search_Frag extends Fragment {
         gridView = (RecyclerView) v.findViewById(R.id.grid);
 
         gridView.setHasFixedSize(true);
-        setDummyData();
+        anim = AnimationUtils.loadAnimation(getActivity(), R.animator.cycle);
+
+        setdata1();
+
+        /*setDummyData();
         @SuppressLint("ResourceType") Animation anim= AnimationUtils.loadAnimation(getContext(), R.animator.cycle);
 
 
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         gridView.setLayoutManager(layoutManager);
         gridViewAdapter = new GridViewAdapterlayout9(getActivity(),operatingSystems,anim);
-        gridView.setAdapter(gridViewAdapter);
+        gridView.setAdapter(gridViewAdapter); */
 
         return v;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        sgen.backview = "Search_Frag";
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
     }
 
     private void setDummyData() {
@@ -109,21 +128,28 @@ public class Search_Frag extends Fragment {
                 break;
             }
             try {
-                    operatingSystems.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+                operatingSystems.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        sgen.backview = "Search_Frag";
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
+    private void setdata1() {
+        operatingSystems = new ArrayList<RecyclerViewItem>();
+        ArrayList<Team> fed = sgen.getdata_fromsql(getActivity(), "select CA_NAME AS col1, IMG AS col2, DATE AS col3, ID AS col4,'-' AS col5 from Category;");
+        for (int i = 0; i < fed.size(); i++) {
+            try {
+                Bitmap icon = BitmapFactory.decodeResource(getActivity().getResources(),Integer.parseInt(fed.get(i).getcol2().toString()));
+                operatingSystems.add(new RecyclerViewItem(icon, fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+        gridView.setLayoutManager(layoutManager);
+        gridViewAdapter = new GridViewAdapterlayout9(getActivity(),operatingSystems,anim);
+        gridView.setAdapter(gridViewAdapter);
     }
 }

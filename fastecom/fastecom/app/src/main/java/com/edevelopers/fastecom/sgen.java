@@ -422,27 +422,27 @@ public class sgen {
                     "('Ice Cream','06/06/2020','"+R.drawable.ice_cream+"')");
             
             sgen.exc_sqlite(context,"INSERT INTO Products(P_NAME,P_PRICE,CATEGORY,DESCRIPTION,P_PRIORITY,P_QUANTITY,DATE,IMG) VALUES" +
-                    "('Cheese Potato Pops','299.00','Fries','in Special Combo','1','1','06/06/2020','Set IMG')," +
-                    "('Chaap','120.00','Chinese','full','1','1','06/06/2020','Set IMG')," +
-                    "('Chilli Paneer','180.00','Chinese','full','1','1','06/06/2020','Set IMG')," +
-                    "('Mushroom','150.00','Chinese','full','1','1','06/06/2020','Set IMG')," +
-                    "('Shahi Paneer+Rice+Dal+Mix Veg+2 Roti+Salad ','200.00','North Indian ','Shahi Paneer+Rice+Dal+Mix Veg+2 Roti+Salad','1','1','06/06/2020','Set IMG')," +
-                    "('Idli+Vada+Dosa+Pongal+Chutney varieties+Sambar','220.00','South Indian','Idli+Vada+Dosa+Pongal+Chutney varieties+Sambar','1','1','06/06/2020','Set IMG')," +
-                    "('North Indian Special Thali','249.00','North Indian','in Special combo','1','1','06/06/2020','Set IMG')," +
-                    "('South Indian Special Thali','249.00','South Indian','','in Special combo','1','1','06/06/2020','Set IMG')," +
-                    "('Tandoori Burger','60.00','Burger','in special one','1','1','06/06/2020','Set IMG')," +
-                    "('Cream Burger','40.00','Burger','extra cream','1','1','06/06/2020','Set IMG')," +
-                    "('Margherita Pizza','95.00','Pizza','Small','1','1','06/06/2020','Set IMG')," +
-                    "('Veggie Paradise Pizza','125.00','Pizza','Small','1','1','06/06/2020','Set IMG')," +
-                    "('Mix Mithai','250.00','Mithai','Rasgulla, Ras Malai, Gulab Jamun','1','1','06/06/2020','Set IMG')," +
-                    "('Veg Biryani','90.00','Biryani','full','1','1','06/06/2020','Set IMG')," +
-                    "('Egg Biryani','100.00','Biryani','full','1','1','06/06/2020','Set IMG')," +
-                    "('Chicken Biryani','120.00','Biryani','full','1','1','06/06/2020','Set IMG')," +
-                    "('Paneer kabab','120.00','kabab','half','1','1','06/06/2020','Set IMG')," +
-                    "('Hara Bhara Kabab','150.00','kabab','half','1','1','06/06/2020','Set IMG')," +
-                    "('Banana Chocolate','140.00','Ice Cream','in Cones','1','1','06/06/2020','Set IMG')," +
-                    "('Apple Strawberry','150.00','Ice Cream','in Ice Cream Cakes','1','1','06/06/2020','Set IMG')," +
-                    "('Tuitti Fruity Sundae','140.00','Ice Cream','in Sundaes','1','1','06/06/2020','Set IMG')");
+                    "('Cheese Potato Pops','299.00','Fries','in Special Combo','1','1','06/06/2020','"+R.drawable.cheesepotatopops+"')," +
+                    "('Chaap','120.00','Chinese','full','1','1','06/06/2020','"+R.drawable.chaap+"')," +
+                    "('Chilli Paneer','180.00','Chinese','full','1','1','06/06/2020','"+R.drawable.chilli_paneer+"')," +
+                    "('Mushroom','150.00','Chinese','full','1','1','06/06/2020','"+R.drawable.mushrooms+"')," +
+                    "('Shahi Paneer+Rice+Dal+Mix Veg+2 Roti+Salad ','200.00','North Indian ','Shahi Paneer+Rice+Dal+Mix Veg+2 Roti+Salad','1','1','06/06/2020','"+R.drawable.north+"')," +
+                    "('Idli+Vada+Dosa+Pongal+Chutney varieties+Sambar','220.00','South Indian','Idli+Vada+Dosa+Pongal+Chutney varieties+Sambar','1','1','06/06/2020','"+R.drawable.north_indian1+"')," +
+                    "('North Indian Special Thali','249.00','North Indian','in Special combo','1','1','06/06/2020','"+R.drawable.south+"')," +
+                    "('South Indian Special Thali','249.00','South Indian','','in Special combo','1','1','06/06/2020','"+R.drawable.south_indian1+"')," +
+                    "('Tandoori Burger','60.00','Burger','in special one','1','1','06/06/2020','"+R.drawable.tandoori_burger+"')," +
+                    "('Cream Burger','40.00','Burger','extra cream','1','1','06/06/2020','"+R.drawable.cream_burger+"')," +
+                    "('Margherita Pizza','95.00','Pizza','Small','1','1','06/06/2020','"+R.drawable.margherita_pizza+"')," +
+                    "('Veggie Paradise Pizza','125.00','Pizza','Small','1','1','06/06/2020','"+R.drawable.new_veggie_paradise+"')," +
+                    "('Mix Mithai','250.00','Mithai','Rasgulla, Ras Malai, Gulab Jamun','1','1','06/06/2020','"+R.drawable.mix+"')," +
+                    "('Veg Biryani','90.00','Biryani','full','1','1','06/06/2020','"+R.drawable.veg_biryani+"')," +
+                    "('Egg Biryani','100.00','Biryani','full','1','1','06/06/2020','"+R.drawable.egg_biryani+"')," +
+                    "('Chicken Biryani','120.00','Biryani','full','1','1','06/06/2020','"+R.drawable.chicken_biryani+"')," +
+                    "('Paneer kabab','120.00','kabab','half','1','1','06/06/2020','"+R.drawable.paneer_kabab+"')," +
+                    "('Hara Bhara Kabab','150.00','kabab','half','1','1','06/06/2020','"+R.drawable.hara_bhara_kebab+"')," +
+                    "('Banana Chocolate','140.00','Ice Cream','in Cones','1','1','06/06/2020','"+R.drawable.bananaicecream+"')," +
+                    "('Apple Strawberry','150.00','Ice Cream','in Ice Cream Cakes','1','1','06/06/2020','"+R.drawable.apple_strawberry+"')," +
+                    "('Tuitti Fruity Sundae','140.00','Ice Cream','in Sundaes','1','1','06/06/2020','"+R.drawable.tuitti+"')");
         }catch (Exception e){
             e.printStackTrace();
         }
