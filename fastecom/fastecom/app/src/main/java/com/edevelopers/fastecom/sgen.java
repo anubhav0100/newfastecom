@@ -422,7 +422,7 @@ public class sgen {
                     "('Ice Cream','06/06/2020','"+R.drawable.ice_cream+"')");
             
             sgen.exc_sqlite(context,"INSERT INTO Products(P_NAME,P_PRICE,CATEGORY,DESCRIPTION,P_PRIORITY,P_QUANTITY,DATE,IMG) VALUES" +
-                    "('Cheese Potato Pops','299.00','Fries','in Special Combo','1','1','06/06/2020','Set IMG')," +
+                    "('Cheese Potato Pops','299.00','Fries','in Special Combo','1','1','06/06/2020','')," +
                     "('Chaap','120.00','Chinese','full','1','1','06/06/2020','Set IMG')," +
                     "('Chilli Paneer','180.00','Chinese','full','1','1','06/06/2020','Set IMG')," +
                     "('Mushroom','150.00','Chinese','full','1','1','06/06/2020','Set IMG')," +
