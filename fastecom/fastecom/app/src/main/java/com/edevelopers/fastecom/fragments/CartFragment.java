@@ -93,7 +93,7 @@ public class CartFragment extends Fragment {
         gridView1 = (RecyclerView) v.findViewById(R.id.grid1);
         anim= AnimationUtils.loadAnimation(getContext(), R.animator.cycle);
         gridView.setHasFixedSize(true);
-        setdata1();
+       // setdata1();
         setdata2();
 
         return v;
