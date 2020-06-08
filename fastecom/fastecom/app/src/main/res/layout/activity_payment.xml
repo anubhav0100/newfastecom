@@ -15,11 +15,31 @@
         android:padding="10dp">
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total amount to be paid is Rs.240"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/line"
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:layout_below="@+id/reorder"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#708090" />
+
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select Payment Method"
             android:textColor="#000"
             android:textSize="25sp"
+            android:layout_marginTop="7dp"
             android:layout_marginBottom="20dp"/>
 
         <LinearLayout

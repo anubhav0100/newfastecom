@@ -14,25 +14,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3">
+        android:paddingTop="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1.2">
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:weightSum="3">
 
-        <ImageView
-            android:id="@+id/image"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_baseline_account_circle_24"
-            android:layout_marginTop="5dp"
-            android:contentDescription="@null"
-            android:scaleType="fitXY" />
+            android:layout_height="wrap_content"
+            android:layout_weight="2.4">
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_baseline_account_circle_24"
+                android:layout_marginTop="5dp"
+                android:contentDescription="@null"
+                android:scaleType="fitXY" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,26 +59,45 @@
                 android:textSize="18dp"
                 />
 
-             <androidx.appcompat.widget.AppCompatTextView
-                 android:id="@+id/text1"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_below="@+id/head"
-                 android:paddingStart="5dp"
-                 android:layout_centerInParent="true"
-                 android:hint="Introduction"
-                 android:textColor="#708090"
-                 android:textColorHint="#708090"
-                 android:textSize="13dp"
-                 />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/head"
+                android:paddingStart="5dp"
+                android:layout_centerInParent="true"
+                android:hint="Introduction"
+                android:textColor="#708090"
+                android:textColorHint="#708090"
+                android:textSize="13dp"
+                />
 
         </LinearLayout>
+
+    </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.2"
-            android:weightSum="3">
+            android:orientation="horizontal"
+            android:paddingTop="15dp"
+            android:layout_weight="3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dish Name"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+           android:orientation="horizontal"
+            android:background="@drawable/box">
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btnminus"
@@ -98,10 +125,31 @@
                 android:layout_weight="1"
                 android:src="@drawable/ic_baseline_add_24"
                 />
+        </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rs.200.00"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:layout_weight="0.1"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"/>
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/line"
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#708090" />
 
     </LinearLayout>
+
+
 
 </androidx.cardview.widget.CardView>
