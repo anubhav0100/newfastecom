@@ -96,7 +96,6 @@ public class Search_Frag extends Fragment {
         /*setDummyData();
         @SuppressLint("ResourceType") Animation anim= AnimationUtils.loadAnimation(getContext(), R.animator.cycle);
 
-
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         gridView.setLayoutManager(layoutManager);
         gridViewAdapter = new GridViewAdapterlayout9(getActivity(),operatingSystems,anim);
