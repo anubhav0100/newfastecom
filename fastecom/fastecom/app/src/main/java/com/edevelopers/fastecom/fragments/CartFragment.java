@@ -2,6 +2,7 @@ package com.edevelopers.fastecom.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -16,9 +17,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.edevelopers.fastecom.R;
+import com.edevelopers.fastecom.activities_M.PaymentActivity;
 import com.edevelopers.fastecom.adapter.CartGridViewAdapterlayout;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout4;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout8;
@@ -45,6 +48,7 @@ public class CartFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private TextView paybtn;
     private RecyclerView gridView,gridView1;
     private GridViewAdapterlayout9 gridViewAdapter;
     private CartGridViewAdapterlayout gridViewAdapter1;
@@ -89,12 +93,20 @@ public class CartFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_cart, container, false);
 
+        paybtn = (TextView) v.findViewById(R.id.paybtn);
         gridView = (RecyclerView) v.findViewById(R.id.grid);
         gridView1 = (RecyclerView) v.findViewById(R.id.grid1);
         anim= AnimationUtils.loadAnimation(getContext(), R.animator.cycle);
         gridView.setHasFixedSize(true);
        // setdata1();
         setdata2();
+
+        paybtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), PaymentActivity.class));
+            }
+        });
 
         return v;
     }
