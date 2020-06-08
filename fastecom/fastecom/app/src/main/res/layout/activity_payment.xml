@@ -11,17 +11,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Payment Method" />
+            android:text="Select Payment Method"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="5dp">
+            android:layout_marginTop="10dp"
+            android:padding="10dp">
 
             <ImageView
                 android:layout_width="70dp"
@@ -37,6 +43,8 @@
                 android:text="Paytm / Paytm UPI"
                 android:textColor="#000"
                 android:padding="3dp"
+                android:gravity="center"
+                android:textAlignment="center"
                 android:textSize="16sp" />
 
             <TextView
@@ -53,7 +61,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="5dp">
+            android:layout_marginTop="10dp"
+            android:padding="10dp">
 
             <ImageView
                 android:layout_width="70dp"
@@ -85,10 +94,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="5dp">
+            android:layout_marginTop="10dp"
+            android:padding="10dp">
 
             <ImageView
-                android:layout_width="70dp"
+                android:layout_width="75dp"
                 android:layout_height="30dp"
                 android:src="@drawable/phonepay"
                 android:padding="2dp"
@@ -117,7 +127,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="5dp">
+            android:layout_marginTop="10dp"
+            android:padding="10dp">
 
             <ImageView
                 android:layout_width="70dp"
