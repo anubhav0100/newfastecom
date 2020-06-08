@@ -20,6 +20,7 @@ import com.edevelopers.fastecom.sgen;
 import java.util.List;
 
 public class GridViewAdapterlayout10 extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
 
@@ -32,6 +33,7 @@ public class GridViewAdapterlayout10 extends RecyclerView.Adapter<RecyclerView.V
         this.mItemList = items;
         this.animi = ani;
     }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,22 +47,44 @@ public class GridViewAdapterlayout10 extends RecyclerView.Adapter<RecyclerView.V
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+
+        if (viewHolder instanceof ItemViewHolder) {
+            populateItemRows((ItemViewHolder) viewHolder, position);
+        } else if (viewHolder instanceof LoadingViewHolder) {
+            showLoadingView((LoadingViewHolder) viewHolder, position);
+        }
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mItemList == null ? 0 : mItemList.size();
+    }
+
+    /**
+     * The following method decides the type of ViewHolder to display in the RecyclerView
+     *
+     * @param position
+     * @return
+     */
+    @Override
+    public int getItemViewType(int position) {
+        return mItemList.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
     }
 
     protected class ItemViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView textView;
+        private ImageView imageView;
+        private TextView textView,textView1,textView2,textView3;
 
         public ItemViewHolder(@NonNull View view) {
             super(view);
+            imageView = (ImageView) view.findViewById(R.id.image);
             textView = (TextView) view.findViewById(R.id.text);
+            textView1 = (TextView) view.findViewById(R.id.price);
+            textView2 = (TextView) view.findViewById(R.id.date);
+            textView3 = (TextView) view.findViewById(R.id.reorder);
+
         }
     }
 
@@ -81,7 +105,11 @@ public class GridViewAdapterlayout10 extends RecyclerView.Adapter<RecyclerView.V
 
     private void populateItemRows(ItemViewHolder viewHolder, int position) {
 
-       viewHolder.textView.setText(mItemList.get(position).getName());
+        viewHolder.imageView.setImageBitmap(mItemList.get(position).getBitmapId());
+        viewHolder.textView.setText(mItemList.get(position).getName());
+        viewHolder.textView1.setText(mItemList.get(position).getModule1());
+        viewHolder.textView2.setText(mItemList.get(position).getCart());
     }
+
 
 }

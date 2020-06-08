@@ -2,13 +2,14 @@ package com.edevelopers.fastecom.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,7 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.edevelopers.fastecom.R;
-import com.edevelopers.fastecom.adapter.GridViewAdapterlayout5;
+import com.edevelopers.fastecom.adapter.GridViewAdapterlayout10;
 import com.edevelopers.fastecom.adapter.RecyclerViewItem;
 import com.edevelopers.fastecom.models.Team;
 import com.edevelopers.fastecom.sgen;
@@ -39,10 +40,10 @@ public class Account_Frag extends Fragment {
     private String mParam2;
 
     private RecyclerView gridView;
-    private GridViewAdapterlayout5 gridViewAdapter;
+    private GridViewAdapterlayout10 gridViewAdapter;
     private ArrayList<RecyclerViewItem> corporations;
     private ArrayList<RecyclerViewItem> operatingSystems;
-
+    Animation anim;
 
     public Account_Frag() {
         // Required empty public constructor
@@ -75,13 +76,40 @@ public class Account_Frag extends Fragment {
         }
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_account_, container, false);
 
+        /*******************************************************************************/
+        gridView = (RecyclerView) v.findViewById(R.id.grid);
+        anim= AnimationUtils.loadAnimation(getContext(), R.animator.cycle);
+        gridView.setHasFixedSize(true);
+
+        setdata1();
+        /*******************************************************************************/
         return v;
+    }
+
+    private void setdata1(){
+        operatingSystems = new ArrayList<RecyclerViewItem>();
+        ArrayList<Team> fed = sgen.getdata_fromsql(getActivity(), "select CA_NAME AS col1, IMG AS col2, DATE AS col3, ID AS col4,'-' AS col5 from Category;");
+        for (int i = 0; i < fed.size(); i++) {
+            try {
+                Bitmap icon = BitmapFactory.decodeResource(getActivity().getResources(),Integer.parseInt(fed.get(i).getcol2().toString()));
+                operatingSystems.add(new RecyclerViewItem(icon, fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString(),"Rs. 299","06/06/2020"));
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
+        gridView.setLayoutManager(layoutManager);
+        gridViewAdapter = new GridViewAdapterlayout10(getActivity(),operatingSystems,anim);
+        gridView.setAdapter(gridViewAdapter);
     }
 
     @Override
