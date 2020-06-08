@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class ViewActivity extends AppCompatActivity {
 
     private RecyclerView listView;
-    private RecyclerView gridView4;
+    private RecyclerView gridView;
     private GridViewAdapterlayout6 gridViewAdapter;
     private ArrayList<RecyclerViewItem> corporations;
     private ArrayList<RecyclerViewItem> operatingSystems;
@@ -38,7 +38,7 @@ public class ViewActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         listView = (RecyclerView) findViewById(R.id.list);
-        gridView4 = (RecyclerView) findViewById(R.id.grid4);
+        gridView = (RecyclerView) findViewById(R.id.grid4);
 
         sgen.Context = getApplicationContext();
 
@@ -50,23 +50,23 @@ public class ViewActivity extends AppCompatActivity {
         }
 
         listView.setHasFixedSize(true);
-        gridView4.setHasFixedSize(true);
+        gridView.setHasFixedSize(true);
         anim = AnimationUtils.loadAnimation(ViewActivity.this, R.animator.cycle);
 
-        setdata1();
+        //setdata1();
 
-        //setDummyData();
-        //@SuppressLint("ResourceType") Animation anim = AnimationUtils.loadAnimation(ViewActivity.this, R.animator.cycle);
+        setDummyData();
+        @SuppressLint("ResourceType") Animation anim = AnimationUtils.loadAnimation(ViewActivity.this, R.animator.cycle);
 
         GridLayoutManager layoutManager1 = new GridLayoutManager(ViewActivity.this, 1, GridLayoutManager.VERTICAL, false);
-        gridView4.setLayoutManager(layoutManager1);
-        gridViewAdapter = new GridViewAdapterlayout6(ViewActivity.this,operatingSystems,anim);
-        gridView4.setAdapter(gridViewAdapter);
+        gridView.setLayoutManager(layoutManager1);
+        gridViewAdapter = new GridViewAdapterlayout6(ViewActivity.this, operatingSystems, anim);
+        gridView.setAdapter(gridViewAdapter);
 
     }
 
-    /*private void setDummyData() {
-        ArrayList<Team> fed = sgen.getdata_fromsql(this, "select TITLE AS col1, IMG AS col2, DATE AS col3, ID AS col4,'-' AS col5 from Head;");
+    private void setDummyData() {
+        ArrayList<Team> fed = sgen.getdata_fromsql(this, "select P_NAME AS col1, IMG AS col2, DATE AS col3, ID AS col4,'-' AS col5 from Products;");
         if (fed.size() < 1) {
             Toast.makeText(this, "No Data Found", Toast.LENGTH_LONG).show();
         }
@@ -82,20 +82,24 @@ public class ViewActivity extends AppCompatActivity {
             catch (Exception e){
                 e.printStackTrace();
             }
-        }*/
+        }
 
 
-
-    private void setdata1() {
+    /*private void setdata1() {
+        ArrayList<Team> fed = sgen.getdata_fromsql(this, "select P_NAME AS col1, IMG AS col2, DESCRIPTION As col3, ID AS col4,'-' AS col5 from Products;");
+        if (fed.size() < 1) {
+            Toast.makeText(this, "No Data Found", Toast.LENGTH_LONG).show();
+        }
         operatingSystems = new ArrayList<RecyclerViewItem>();
-        ArrayList<Team> fed = sgen.getdata_fromsql(this,"select P_NAME AS col1, IMG AS col2, DATE AS col3, DESCRIPTION As col4, P_PRICE As col5, CATEGORY As col6, P_PRIORITY As col7, P_QUANTITY As col8, ID AS col9,'-' AS col10 from Products;");
         for (int i = 0; i < fed.size(); i++) {
             try {
+                Bitmap icon = BitmapFactory.decodeResource(this.getResources(), Integer.parseInt(fed.get(i).getcol2().toString()));
                 operatingSystems.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        } */
 
     }
+
 }
