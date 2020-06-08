@@ -6,9 +6,9 @@
     android:layout_marginStart="4dp">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="15dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="10dp"
             app:cardElevation="5dp"
             app:cardMaxElevation="10dp"
             app:cardPreventCornerOverlap="false"
@@ -16,9 +16,8 @@
 
             <ImageView
                 android:id="@+id/image"
-                android:layout_width="130dp"
-                android:layout_height="100dp"
-                android:contentDescription="@string/app_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 android:src="@drawable/logo" />
 

@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:src="@drawable/logo"
-            android:layout_marginTop="5dp"
             android:contentDescription="@null"
             android:scaleType="fitXY" />
     </androidx.cardview.widget.CardView>
