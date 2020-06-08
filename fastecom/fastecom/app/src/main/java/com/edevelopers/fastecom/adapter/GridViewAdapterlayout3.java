@@ -56,8 +56,6 @@ public class GridViewAdapterlayout3 extends RecyclerView.Adapter<GridViewAdapter
         private ImageView imageView;
         private TextView textView;
 
-
-
         public ViewHolder(View view) {
             super(view);
             textView = (TextView) view.findViewById(R.id.text);
