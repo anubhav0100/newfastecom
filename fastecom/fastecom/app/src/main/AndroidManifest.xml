@@ -9,31 +9,13 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@drawable/fecom"
         android:label="@string/app_name"
         android:roundIcon="@drawable/fecom"
         android:supportsRtl="true"
+        android:largeHeap="true"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name=".activities_M.MainqActivity"
-            android:label="@string/title_activity_mainq"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
-            android:name=".activities_M.HomeDrActivity"
-            android:label="@string/title_activity_home_dr"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
-            android:name=".SideDrawerActivity"
-            android:label="@string/title_activity_side_drawer"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
-            android:name=".activities_M.SideDrawerActivity"
-            android:label="@string/title_activity_side_drawer"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
         <activity android:name=".activities_M.PaymentActivity" />
         <activity android:name=".activities_M.Detailed_Activity" />
         <activity android:name=".activities_M.ListActivity" />

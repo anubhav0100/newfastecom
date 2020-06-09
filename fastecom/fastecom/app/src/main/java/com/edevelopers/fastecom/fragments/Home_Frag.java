@@ -131,7 +131,14 @@ public class Home_Frag extends Fragment {
 
         gridView.setHasFixedSize(true);
         gridView1.setHasFixedSize(true);
+        gridView2.setHasFixedSize(true);
         gridView3.setHasFixedSize(true);
+        gridView4.setHasFixedSize(true);
+        gridView.setNestedScrollingEnabled(false);
+        gridView1.setNestedScrollingEnabled(false);
+        gridView2.setNestedScrollingEnabled(false);
+        gridView3.setNestedScrollingEnabled(false);
+        gridView4.setNestedScrollingEnabled(false);
         anim = AnimationUtils.loadAnimation(getActivity(), R.animator.cycle);
 
         setdata1();
