@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.edevelopers.fastecom" >
+    package="com.edevelopers.fastecom">
 
     <uses-permission
         android:name="android.permission.GET_ACCOUNTS"
@@ -12,23 +12,23 @@
         android:hardwareAccelerated="false"
         android:icon="@drawable/fecom"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@drawable/fecom"
         android:supportsRtl="true"
-        android:largeHeap="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".MessageActivity"></activity>
         <activity android:name=".activities_M.PaymentActivity" />
         <activity android:name=".activities_M.Detailed_Activity" />
         <activity android:name=".activities_M.ListActivity" />
         <activity android:name=".activities_M.CheckoutActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".activities_M.ViewActivity"
-            android:parentActivityName=".MainActivity"
-            >
-        </activity>
+        <activity
+            android:name=".activities_M.ViewActivity"
+            android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".activities_M.ExpandableList" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".activities_M.MainLandingActivity" >
+        <activity android:name=".activities_M.MainLandingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
