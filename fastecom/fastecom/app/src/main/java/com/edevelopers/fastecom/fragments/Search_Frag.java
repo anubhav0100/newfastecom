@@ -18,7 +18,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.edevelopers.fastecom.R;
+import com.edevelopers.fastecom.Services.VolleyExecute;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout1;
+import com.edevelopers.fastecom.adapter.GridViewAdapterlayout4;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout5;
 import com.edevelopers.fastecom.adapter.GridViewAdapterlayout9;
 import com.edevelopers.fastecom.adapter.RecyclerViewItem;
@@ -123,7 +125,7 @@ public class Search_Frag extends Fragment {
 
         operatingSystems = new ArrayList<RecyclerViewItem>();
         for (int i = 0; i < fed.size(); i++) {
-            if(i>=8) {
+            if (i >= 8) {
                 break;
             }
             try {
@@ -134,7 +136,7 @@ public class Search_Frag extends Fragment {
         }
     }
 
-    private void setdata1() {
+    /*private void setdata1() {
         operatingSystems = new ArrayList<RecyclerViewItem>();
         ArrayList<Team> fed = sgen.getdata_fromsql(getActivity(), "select CA_NAME AS col1, IMG AS col2, DATE AS col3, ID AS col4,'-' AS col5 from Category;");
         for (int i = 0; i < fed.size(); i++) {
@@ -150,5 +152,33 @@ public class Search_Frag extends Fragment {
         gridView.setLayoutManager(layoutManager);
         gridViewAdapter = new GridViewAdapterlayout9(getActivity(),operatingSystems,anim);
         gridView.setAdapter(gridViewAdapter);
+    } */
+
+    private void setdata1() {
+        operatingSystems = new ArrayList<RecyclerViewItem>();
+        //Grid View 1
+        VolleyExecute.volleydynamicgetfun(getActivity(), "", "", "", "", "", new VolleyExecute.VolleyCallback() {
+            @Override
+            public void onSuccess(ArrayList<Team> teams) {
+                ArrayList<Team> fed = teams;
+                for (int i = 0; i < fed.size(); i++) {
+                    if (i >= 8) {
+                        break;
+                    }
+                    try {
+                        operatingSystems.add(new RecyclerViewItem(sgen.Base64ToImage(fed.get(i).getcol2().toString()), fed.get(i).getcol1(), fed.get(i).getcol4().trim().toString()));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+                gridView.setLayoutManager(layoutManager);
+                gridViewAdapter = new GridViewAdapterlayout9(getActivity(), operatingSystems, anim);
+                gridView.setAdapter(gridViewAdapter);
+
+
+            }
+        });
     }
 }
