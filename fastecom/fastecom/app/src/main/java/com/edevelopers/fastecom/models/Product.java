@@ -4,7 +4,25 @@ public class Product {
     private String PC_ID, PC_NAME, DESCRIPTION, META_TAG, META_DESCRIPTION, META_KEYWORD, PC_TYPE, PC_PRIORITY, PRODUCT_CATEGORY_LEVEL, PC_MODEL, PC_SKU, PC_UPC, PC_EAN, PC_JAN, PC_ISBN, PC_MPN,PC_LOCATION, PC_QUANTITY, PC_STOCK_STATUS_ID, PC_IMG_ID, PC_MANUFACTURING_ID, PC_SHIPPING, PC_PRICE, PC_POINTS, PC_TAX_CLASS_ID, PC_DATA_AVAILABLE, PC_WEIGHT, PC_WEIGHT_CLASS_ID, PC_LENGTH, PC_WIDTH, PC_HEIGHT, PC_LENGTH_CLASS_ID, PC_SUBTRACT, PC_MINIMUM, PC_SORT_ORDER, PC_STATUS, CREATED_DATE;
     boolean selected = false;
     // private int teamWins;
-    public Product (String PC_ID, String PC_NAME, String DESCRIPTION, String META_TAG, String META_DESCRIPTION, String META_KEYWORD, String PC_TYPE, String PC_PRIORITY, String PRODUCT_CATEGORY_LEVEL, String PC_MODEL, String PC_SKU, String PC_UPC, String PC_EAN, String PC_JAN, String PC_ISBN, String PC_MPN, String PC_LOCATION, String PC_QUANTITY, String PC_STOCK_STATUS_ID, String PC_IMG_ID, String PC_MANUFACTURING_ID, String PC_SHIPPING, String PC_PRICE, String PC_POINTS, String PC_TAX_CLASS_ID, String PC_DATA_AVAILABLE, String PC_WEIGHT, String PC_WEIGHT_CLASS_ID, String PC_LENGTH, String PC_WIDTH, String PC_HEIGHT, String PC_LENGTH_CLASS_ID, String PC_SUBTRACT, String PC_MINIMUM, String PC_SORT_ORDER, String PC_STATUS, String CREATED_DATE, boolean selected )
+    public Product (String PC_ID, String PC_NAME,
+                    String DESCRIPTION, String META_TAG,
+                    String META_DESCRIPTION, String META_KEYWORD,
+                    String PC_TYPE, String PC_PRIORITY,
+                    String PRODUCT_CATEGORY_LEVEL, String PC_MODEL,
+                    String PC_SKU, String PC_UPC,
+                    String PC_EAN, String PC_JAN,
+                    String PC_ISBN, String PC_MPN,
+                    String PC_LOCATION, String PC_QUANTITY,
+                    String PC_STOCK_STATUS_ID, String PC_IMG_ID,
+                    String PC_MANUFACTURING_ID, String PC_SHIPPING,
+                    String PC_PRICE, String PC_POINTS,
+                    String PC_TAX_CLASS_ID, String PC_DATA_AVAILABLE,
+                    String PC_WEIGHT, String PC_WEIGHT_CLASS_ID,
+                    String PC_LENGTH, String PC_WIDTH,
+                    String PC_HEIGHT, String PC_LENGTH_CLASS_ID,
+                    String PC_SUBTRACT, String PC_MINIMUM,
+                    String PC_SORT_ORDER, String PC_STATUS,
+                    String CREATED_DATE, boolean selected )
     {
         super();
         this.PC_ID=PC_ID;
@@ -44,7 +62,6 @@ public class Product {
         this.PC_SORT_ORDER=PC_SORT_ORDER;
         this.PC_STATUS=PC_STATUS;
         this.CREATED_DATE=CREATED_DATE;
-
         this.selected = selected;
 
     }
