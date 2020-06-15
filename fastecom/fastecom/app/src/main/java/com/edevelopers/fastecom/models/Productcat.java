@@ -12,7 +12,7 @@ public class Productcat {
                     String PRODUCT_CATEGORY_LEVEL, String PC_MODEL,
                     String CREATED_DATE, String PC_TYPE,boolean selected)
     {
-        
+
     }
 
 }

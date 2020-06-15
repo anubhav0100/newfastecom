@@ -175,7 +175,14 @@ public class VolleyExecute {
                     try{
                         for(int i = 0;i < response.length();i++){
                             JSONObject explrObject = response.getJSONObject(i);
-                            fed.add(new Team(explrObject.getString("col1"), explrObject.getString("col2"), explrObject.getString("col3"), explrObject.getString("col4"), explrObject.getString("col5"), false));
+                            fed.add(new Team(
+                                    explrObject.getString("col1"),
+                                    explrObject.getString("col2"),
+                                    explrObject.getString("col3"),
+                                    explrObject.getString("col4"),
+                                    explrObject.getString("col5"),
+                                    false
+                            ));
                         }
                     }
                     catch (Exception e){
