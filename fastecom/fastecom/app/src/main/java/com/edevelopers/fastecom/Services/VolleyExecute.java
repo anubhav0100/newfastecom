@@ -8,6 +8,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.edevelopers.fastecom.models.Product;
+import com.edevelopers.fastecom.models.Productcat;
 import com.edevelopers.fastecom.models.Team;
 
 import org.json.JSONArray;
@@ -28,6 +29,11 @@ public class VolleyExecute {
         void onSuccess(ArrayList<Product> products);
     }
 
+    public interface VolleyCallbackproductcat
+    {
+        void onSuccess(ArrayList<Productcat> productcats);
+    }
+
     public static void volleydynamicgetfun(Context context, String col1, String col2, String col3, String col4, String col5, final VolleyCallback callback){
         RequestQueue queue= Volley.newRequestQueue(context);
         final ArrayList<Team> fed = new ArrayList<>();
@@ -40,6 +46,50 @@ public class VolleyExecute {
             jsonObject.accumulate("col3", col3);
             jsonObject.accumulate("col4", col4);
             jsonObject.accumulate("col5", col5);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try{
+            customRequest jsonObjectRequest = new customRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONArray>() {
+                @Override
+                public void onResponse(JSONArray response) {
+                    try{
+                        for(int i = 0;i < response.length();i++){
+                            JSONObject explrObject = response.getJSONObject(i);
+                            fed.add(new Team(explrObject.getString("col1"), explrObject.getString("col2"), explrObject.getString("col3"), explrObject.getString("col4"), explrObject.getString("col5"), false));
+                        }
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    callback.onSuccess(fed);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                   /* Toast.makeText(context,""+error.getMessage(),Toast.LENGTH_LONG).show();*/
+                }
+            });
+
+            queue.add(jsonObjectRequest);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void volleydynamicsendalert(Context context, String mobileid, String title, String body, String comp, String unit, final VolleyCallback callback){
+        RequestQueue queue= Volley.newRequestQueue(context);
+        final ArrayList<Team> fed = new ArrayList<>();
+        String url = "http://wservice.skyinfy.com/hdfiles/sendalert";
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.accumulate("col1", mobileid);
+            jsonObject.accumulate("col2", title);
+            jsonObject.accumulate("col3", body);
+            jsonObject.accumulate("col4", comp);
+            jsonObject.accumulate("col5", unit);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -153,9 +203,9 @@ public class VolleyExecute {
 
     }
 
-    public static void volleydynamicgetfunproductcat(Context context, String col1, String col2, String col3, String col4, String col5, final VolleyCallback callback){
+    public static void volleydynamicgetfunproductcat(Context context, String col1, String col2, String col3, String col4, String col5, final VolleyCallbackproductcat callback){
         RequestQueue queue= Volley.newRequestQueue(context);
-        final ArrayList<Team> fed = new ArrayList<>();
+        final ArrayList<Productcat> fed = new ArrayList<>();
         String url = "http://wservice.skyinfy.com/hdfiles/getDataProductcate";
 
         JSONObject jsonObject = new JSONObject();
@@ -175,12 +225,19 @@ public class VolleyExecute {
                     try{
                         for(int i = 0;i < response.length();i++){
                             JSONObject explrObject = response.getJSONObject(i);
-                            fed.add(new Team(
-                                    explrObject.getString("col1"),
-                                    explrObject.getString("col2"),
-                                    explrObject.getString("col3"),
-                                    explrObject.getString("col4"),
-                                    explrObject.getString("col5"),
+                            fed.add(new Productcat(
+                                    explrObject.getString("PC_ID"),
+                                    explrObject.getString("PC_NAME"),
+                                    explrObject.getString("PC_DEFAULT"),
+                                    explrObject.getString("PC_LEVEL"),
+                                    explrObject.getString("PC_LEVEL_NAME1"),
+                                    explrObject.getString("PC_LEVEL_NAME2"),
+                                    explrObject.getString("PC_LEVEL_NAME3"),
+                                    explrObject.getString("PC_LEVEL_NAME4"),
+                                    explrObject.getString("PC_ORDER"),
+                                    explrObject.getString("PC_UID"),
+                                    explrObject.getString("CREATED_DATE"),
+                                    explrObject.getString("PC_TYPE"),
                                     false
                             ));
                         }
@@ -203,4 +260,5 @@ public class VolleyExecute {
         }
 
     }
+
 }

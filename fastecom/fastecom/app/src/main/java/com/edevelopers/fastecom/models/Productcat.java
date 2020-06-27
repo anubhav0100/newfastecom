@@ -2,14 +2,13 @@ package com.edevelopers.fastecom.models;
 
 public class Productcat {
 
-    private String PC_ID, PC_DEFAULT, PC_LEVEL, PC_LEVEL_NAME1, PC_LEVEL_NAME2, PC_LEVEL_NAME3, PC_LEVEL_NAME4, PRODUCT_CATEGORY_LEVEL, CREATED_DATE, PC_MODEL, PC_ORDER, PC_UID, PC_NAME, PC_TYPE;
+    private String PC_ID, PC_DEFAULT, PC_LEVEL, PC_LEVEL_NAME1, PC_LEVEL_NAME2, PC_LEVEL_NAME3, PC_LEVEL_NAME4, CREATED_DATE, PC_ORDER, PC_UID, PC_NAME, PC_TYPE;
     boolean selected = false;
 
     public Productcat(String PC_ID, String PC_NAME,
                       String PC_DEFAULT, String PC_LEVEL,
                       String PC_LEVEL_NAME1, String PC_LEVEL_NAME2,
                       String PC_LEVEL_NAME3, String PC_LEVEL_NAME4,
-                      String PRODUCT_CATEGORY_LEVEL, String PC_MODEL,
                       String PC_ORDER, String PC_UID,
                       String CREATED_DATE, String PC_TYPE, boolean selected) {
         super();
@@ -21,8 +20,6 @@ public class Productcat {
         this.PC_LEVEL_NAME2 = PC_LEVEL_NAME2;
         this.PC_LEVEL_NAME3 = PC_LEVEL_NAME3;
         this.PC_LEVEL_NAME4 = PC_LEVEL_NAME4;
-        this.PRODUCT_CATEGORY_LEVEL = PRODUCT_CATEGORY_LEVEL;
-        this.PC_MODEL = PC_MODEL;
         this.PC_ORDER = PC_ORDER;
         this.PC_UID = PC_UID;
         this.CREATED_DATE = CREATED_DATE;
@@ -91,21 +88,6 @@ public class Productcat {
     public void setPC_LEVEL_NAME4(String PC_LEVEL_NAME4)
     {
         this.PC_LEVEL_NAME4 =PC_LEVEL_NAME4;
-    }
-
-    public String getPRODUCT_CATEGORY_LEVEL()
-    {
-        return PRODUCT_CATEGORY_LEVEL;
-    }
-    public void setPRODUCT_CATEGORY_LEVEL(String PRODUCT_CATEGORY_LEVEL) { this.PRODUCT_CATEGORY_LEVEL =PRODUCT_CATEGORY_LEVEL; }
-
-    public String getPC_MODEL()
-    {
-        return PC_MODEL;
-    }
-    public void setPC_MODEL(String PC_MODEL)
-    {
-        this.PC_MODEL =PC_MODEL;
     }
 
     public String getPC_ORDER()
