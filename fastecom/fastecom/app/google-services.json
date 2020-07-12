@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "916994691122",
-    "firebase_url": "https://fastecom-92e54.firebaseio.com",
-    "project_id": "fastecom-92e54",
-    "storage_bucket": "fastecom-92e54.appspot.com"
+    "project_number": "676466413570",
+    "firebase_url": "https://tdp-main.firebaseio.com",
+    "project_id": "tdp-main",
+    "storage_bucket": "tdp-main.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:916994691122:android:38d46c6328ca0f4f872c2b",
+        "mobilesdk_app_id": "1:676466413570:android:2086fea41d59b885a3171b",
         "android_client_info": {
-          "package_name": "com.edevelopers.fastecom"
+          "package_name": "com.edevelopers.tdp_main"
         }
       },
       "oauth_client": [
         {
-          "client_id": "916994691122-f1flvvo6k8cuenrt4p4fnlaboms8dqd7.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.edevelopers.fastecom",
-            "certificate_hash": "556d7eef087eba54c8f378e80057009567a4f25f"
-          }
-        },
-        {
-          "client_id": "916994691122-m7pnkvokkrtq1507m0nfit2kem2pooee.apps.googleusercontent.com",
+          "client_id": "676466413570-nn3upo0alcl413u85ohat7a08ov4ah3o.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB64vLuBlW0KjoZZhEYwAiRWDCWPwsIs0U"
+          "current_key": "AIzaSyDcK58ea9fmRAx9RVe3gW-ipAHMQUPavPA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "916994691122-38r5n60gag3ttj2dofrm54786tk2l7fd.apps.googleusercontent.com",
+              "client_id": "676466413570-nn3upo0alcl413u85ohat7a08ov4ah3o.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

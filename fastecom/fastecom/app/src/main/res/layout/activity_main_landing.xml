@@ -51,7 +51,7 @@
                 android:layout_gravity="bottom"
                 android:background="@drawable/corners_bottom"
                 app:itemIconTint="@drawable/corners"
-                app:menu="@drawable/bottom_navigation">
+                app:menu="@menu/bottom_navigation">
             </com.google.android.material.bottomnavigation.BottomNavigationView>
 
         </LinearLayout>

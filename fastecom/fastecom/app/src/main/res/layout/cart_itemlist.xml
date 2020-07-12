@@ -84,6 +84,7 @@
             android:layout_weight="3">
 
             <TextView
+                android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Dish Name"
@@ -128,6 +129,7 @@
         </LinearLayout>
 
             <TextView
+                android:id="@+id/Tprice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rs.200.00"

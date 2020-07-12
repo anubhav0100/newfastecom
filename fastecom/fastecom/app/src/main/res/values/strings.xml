@@ -28,4 +28,12 @@
     <string name="title_activity_side_drawer">SideDrawerActivity</string>
     <string name="title_activity_home_dr">HomeDrActivity</string>
     <string name="title_activity_mainq">MainqActivity</string>
+    <string name="title_activity_products_view">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_shop_view">FullscreenActivity</string>
+    <string name="title_activity_cart">FullscreenActivity</string>
+    <string name="title_activity_signin">FullscreenActivity</string>
+    <string name="title_activity_place_order">FullscreenActivity</string>
+    <string name="title_activity_signup">FullscreenActivity</string>
 </resources>

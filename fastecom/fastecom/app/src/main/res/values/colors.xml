@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
 
 
     <color name="color_log_in">#94019c8f</color>
     <color name="color_sign_up">#93303f9f</color>
+
+    <color name="bg_dark">#292b2c</color>
+    <color name="bg_white">#f7f7f7</color>
+    <color name="bg_danger">#d9534f</color>
+    <color name="bg_warning">#f0ad4e</color>
+    <color name="bg_info">#5bc0de</color>
+    <color name="bg_success">#5cb85c</color>
+    <color name="bg_primary">#0275d8</color>
 
 
     <color name="color_logo_log_in">#b4faf5</color>
@@ -48,7 +56,6 @@
     <color name="Transparent">#00000000</color>
 
 
-
     <color name="primary">#E43F3F</color>
     <color name="primary_dark">#E12929</color>
     <color name="primary_darker">#CC1D1D</color>
@@ -87,7 +94,6 @@
     <color name="colorDivider">#aaaaaa</color>
     <color name="sa_anjali">#303F9F</color>
     <color name="sa_green">#88b270</color>
-    /////
 
     <color name="windowBackground">#FFFFFF</color>
     <color name="titleTextColor">#FFFFFF</color>
@@ -96,5 +102,7 @@
     <color name="dodgerblue">#1e90ff</color>
 
     <color name="gray_background">#757575</color>
+
+    <color name="black_overlay">#66000000</color>
 
 </resources>

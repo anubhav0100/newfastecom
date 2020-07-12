@@ -1,38 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.edevelopers.fastecom">
+    package="com.edevelopers.tdp_main">
 
     <uses-permission
         android:name="android.permission.GET_ACCOUNTS"
         android:maxSdkVersion="22" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
-        android:hardwareAccelerated="false"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MessageActivity"></activity>
-        <activity android:name=".activities_M.PaymentActivity" />
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activities_M.SignupActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_signup"
+            android:theme="@style/FullscreenTheme"></activity>
+        <activity android:name=".activities_M.MobileVerification" />
+        <activity android:name=".activities_M.EmailVerification" />
+        <activity android:name=".showmap" />
+        <activity
+            android:name=".activities_M.PlaceOrderActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_place_order"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".activities_M.SigninActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_signin"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".activities_M.CartActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_cart"
+            android:theme="@style/FullscreenTheme" />
+
+        <service
+            android:name=".Services.HomeService"
+            android:exported="false" />
+        <service
+            android:name=".Services.CartService"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".activities_M.ShopViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_shop_view"
+            android:theme="@style/FullscreenTheme" />
+        <activity android:name=".MessageActivity" />
+        <activity
+            android:name=".activities_M.PaymentActivity"
+            android:label="Payment" />
         <activity android:name=".activities_M.Detailed_Activity" />
         <activity android:name=".activities_M.ListActivity" />
-        <activity android:name=".activities_M.CheckoutActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".Geo_Fencing.MapActivity" />
+        <activity
+            android:name=".activities_M.CheckoutActivity"
+            android:label="Checkout" />
+        <activity
+            android:name=".RegisterActivity"
+            android:label="Register" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="Login" />
         <activity
             android:name=".activities_M.ViewActivity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".activities_M.ExpandableList" />
         <activity android:name=".MainActivity" />
+        <activity
+            android:name=".activities_M.ProductsViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_products_view"
+            android:theme="@style/FullscreenTheme" />
         <activity android:name=".activities_M.MainLandingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

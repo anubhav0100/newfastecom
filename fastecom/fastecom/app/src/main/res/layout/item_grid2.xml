@@ -1,5 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="110dp"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -11,31 +11,41 @@
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp"
             app:cardMaxElevation="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="true">
 
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:scaleType="fitXY"
                 android:src="@drawable/logo" />
 
         </androidx.cardview.widget.CardView>
 
 
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/text"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000000"
             android:textColorHint="#000000"
             android:hint="Heading"
-            android:textSize="20dp"
+            android:textSize="17dp"
             android:gravity="center"/>
 
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <TextView
+
+        <!--<TextView
             android:id="@+id/intro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,7 +56,7 @@
             android:textColor="#708090"
             android:textColorHint="#708090"
             android:textSize="15dp"
-            android:gravity="center"/>
+            android:gravity="center"/>-->
 
         <!--<LinearLayout
             android:layout_width="match_parent"

@@ -1,0 +1,122 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/container_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteTextView"
+                android:layout_width="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSearchResultSubtitle"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Please enter your place" />
+            <!--<TextView android:gravity="center_vertical"-->
+            <!--android:id="@+id/Locality"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:drawablePadding="14dip"-->
+            <!--android:ellipsize="end"-->
+            <!--android:padding="10dp"-->
+            <!--android:singleLine="true"-->
+            <!--android:text="Click to change location"-->
+            <!--android:textSize="20sp" />-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnnext"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:text="Next"
+                    android:layout_margin="10dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/rounded_corner_white_klas"
+                    android:textAppearance="?android:attr/textAppearanceSearchResultSubtitle"
+                    android:layout_height="wrap_content"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btncurr"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.25"
+                    android:text="My Location"
+                    android:layout_margin="10dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/rounded_corner_white_klas"
+                    android:textAppearance="?android:attr/textAppearanceSearchResultSubtitle"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/Address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:enabled="true"
+                android:editable="false"
+                android:textAppearance="?android:attr/textAppearanceSearchResultSubtitle"
+                android:hint="Address"
+                android:singleLine="false" />
+        </LinearLayout>
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/container_toolbar">
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".showmap" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!--<TextView-->
+            <!--android:id="@+id/locationMarkertext"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@drawable/rounded_corner_map"-->
+            <!--android:gravity="center"-->
+            <!--android:minWidth="250dp"-->
+            <!--android:paddingLeft="2dp"-->
+            <!--android:paddingRight="2dp"-->
+            <!--android:text=""-->
+            <!--android:textColor="@android:color/white" />-->
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/add_marker" />
+        </LinearLayout>
+
+
+
+    </FrameLayout>
+</RelativeLayout>
