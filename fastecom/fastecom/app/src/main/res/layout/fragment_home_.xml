@@ -47,6 +47,7 @@
 
 
                     <TextView
+                        android:id="@+id/select_Location"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Home"
@@ -54,6 +55,7 @@
                         android:textSize="20sp" />
 
                     <TextView
+                        android:id="@+id/addresshome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Address"

@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -20,7 +22,7 @@ public class MobileVerification extends AppCompatActivity {
 
     private TextInputEditText Mobile;
     private Button resend,verify;
-    private String EmailID = "",MobileNumber = "",otpmobile = "";
+    private String EmailID = "",MobileNumber = "",otpmobile = "0000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +45,34 @@ public class MobileVerification extends AppCompatActivity {
             }
         });
 
+        verify.setEnabled(false);
+        Mobile.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length() == 6){
+                    verify.setEnabled(true);
+                }
+            }
+        });
+
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(otpmobile.equals(Mobile.getText().toString())){
                     verifyotp();
+                }
+                else{
+                    Toast.makeText(MobileVerification.this,"Invalid  OTP",Toast.LENGTH_LONG).show();
                 }
             }
         });

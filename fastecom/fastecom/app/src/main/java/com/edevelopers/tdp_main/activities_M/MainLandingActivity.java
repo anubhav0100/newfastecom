@@ -31,6 +31,7 @@ import com.edevelopers.tdp_main.Services.GPSTracker;
 import com.edevelopers.tdp_main.Services.VolleyExecute;
 import com.edevelopers.tdp_main.fragments.CartFragment;
 import com.edevelopers.tdp_main.models.Team;
+import com.edevelopers.tdp_main.showmap;
 import com.firebase.geofire.GeoLocation;
 import com.firebase.geofire.GeoQuery;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -85,6 +86,7 @@ public class MainLandingActivity extends AppCompatActivity {
         }catch(Exception e){
             e.printStackTrace();
         }
+
 
         if(sgen.LOGIN_STATUS.equals("")){
             try{
@@ -202,6 +204,15 @@ public class MainLandingActivity extends AppCompatActivity {
 
             case R.id.CartP:
                 startActivity(new Intent(MainLandingActivity.this,CartActivity.class));
+                return true;
+
+            case R.id.TrackP:
+                if(sgen.LOGIN_STATUS.toUpperCase().equals("SUCCESS")){
+                    startActivity(new Intent(MainLandingActivity.this,OrderActivity.class));
+                }
+                else{
+                    startActivity(new Intent(MainLandingActivity.this,SigninActivity.class));
+                }
                 return true;
 
             default:
@@ -329,6 +340,7 @@ public class MainLandingActivity extends AppCompatActivity {
             sgen.CUR_DISTRICT =District;
             sgen.CUR_CITY =CITY;
             sgen.CUR_PstalCode =PstalCode;
+            sgen.CUR_Address = Address;
 
             sgen.SGLOC = District;
 

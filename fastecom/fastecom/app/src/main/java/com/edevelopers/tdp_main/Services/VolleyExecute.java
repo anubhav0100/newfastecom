@@ -216,18 +216,68 @@ public class VolleyExecute {
 
     }
 
-    public static void volleydynamicsendalert(Context context, String mobileid, String title, String body, String comp, String unit, final VolleyCallback callback){
+    public static void volleydynamicsendalertsameapp(Context context, String mobileid, String title, String body, final VolleyCallback callback){
         RequestQueue queue= Volley.newRequestQueue(context);
         final ArrayList<Team> fed = new ArrayList<>();
         String url = "http://ecom.aasinfotech.com/api/WebApi/sendalert";
+        String ApplicationID = "AAAAnYCKUAI:APA91bGwNcNNfSlYRbRxpyZ0Q3OpsPY3JG_W-lCOmdC2jy2VRUacC9f8s_2tw1Xxx94izwFHHmecNdkmGvTbeuP7uUhZiZa7rqkSsWdJQcwntc_OFCxV9mKOeduZHcf4gcN3GJ3iRbJB";
+        String SenderId = "676466413570";
+
 
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.accumulate("col1", mobileid);
             jsonObject.accumulate("col2", title);
             jsonObject.accumulate("col3", body);
-            jsonObject.accumulate("col4", comp);
-            jsonObject.accumulate("col5", unit);
+            jsonObject.accumulate("col4", ApplicationID);
+            jsonObject.accumulate("col5", SenderId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try{
+            customRequest jsonObjectRequest = new customRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONArray>() {
+                @Override
+                public void onResponse(JSONArray response) {
+                    try{
+                        for(int i = 0;i < response.length();i++){
+                            JSONObject explrObject = response.getJSONObject(i);
+                            fed.add(new Team(explrObject.getString("col1"), explrObject.getString("col2"), explrObject.getString("col3"), explrObject.getString("col4"), explrObject.getString("col5"), false));
+                        }
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    callback.onSuccess(fed);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    /* Toast.makeText(context,""+error.getMessage(),Toast.LENGTH_LONG).show();*/
+                }
+            });
+
+            queue.add(jsonObjectRequest);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void volleydynamicsendalertTDPS(Context context, String mobileid, String title, String body, final VolleyCallback callback){
+        RequestQueue queue= Volley.newRequestQueue(context);
+        final ArrayList<Team> fed = new ArrayList<>();
+        String url = "http://ecom.aasinfotech.com/api/WebApi/sendalert";
+        String ApplicationID = "AAAAUwC1QU4:APA91bEcsEBjBIlv2iu5suCTlOWYwJwa3YRdKJLvsFljMe6yxQ67wJjS7E4Cvorq5iVHD-4eHLbsnbNkpphVsbrKsVvMQFLtQjrH8xm2qUHznLr44qyqZjMbW8WkF1Osq3xguZFhdfI_";
+        String SenderId = "356494164302";
+
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.accumulate("col1", mobileid);
+            jsonObject.accumulate("col2", title);
+            jsonObject.accumulate("col3", body);
+            jsonObject.accumulate("col4", ApplicationID);
+            jsonObject.accumulate("col5", SenderId);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -553,8 +603,5 @@ public class VolleyExecute {
         }catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
-
 }

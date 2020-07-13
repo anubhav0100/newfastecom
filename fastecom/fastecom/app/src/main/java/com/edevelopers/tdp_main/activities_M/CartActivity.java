@@ -7,16 +7,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.InputFilter;
+import android.text.InputType;
+import android.text.Selection;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.edevelopers.tdp_main.R;
 import com.edevelopers.tdp_main.Services.VolleyExecute;
@@ -25,7 +34,10 @@ import com.edevelopers.tdp_main.adapter.GridViewAdapterlayout9;
 import com.edevelopers.tdp_main.adapter.RecyclerViewItem;
 import com.edevelopers.tdp_main.models.Team;
 import com.edevelopers.tdp_main.sgen;
+import com.edevelopers.tdp_main.showmap;
+import com.google.android.gms.maps.model.LatLng;
 
+import java.security.PrivilegedAction;
 import java.util.ArrayList;
 
 /**
@@ -50,17 +62,30 @@ public class CartActivity extends AppCompatActivity {
      * and a change of the status and navigation bar.
      */
 
-    private TextView paybtn;
+    private TextView paybtn,AddressChange,DeliveryAddress;
     private RecyclerView gridView;
     private CartGridViewAdapterlayout gridViewAdapter1;
+    private String latlang ="";
+    private String getFullAddress1 = "",getFullAddress2 = "",returnaddress = "";
     public static ArrayList<RecyclerViewItem> operatingSystems1;
     public static  ArrayList<RecyclerViewItem> operatingSystems2;
+    private  ArrayList<RecyclerViewItem> ftokensystem;
     Animation anim;
+
+    private String[] ftokenid = {};
 
     public static TextView itotal;
     public static TextView delivery;
     public static TextView gtotal;
     public static TextView gtotal1;
+
+    private Dialog dialog;
+
+    private String mainQuery = "";
+    private String[] items = {},itemid = {};
+    private String AddressSelect = "";
+    private String AddressSelectID = "";
+    private String Addressnewadd = "";
 
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
@@ -149,6 +174,13 @@ public class CartActivity extends AppCompatActivity {
         anim= AnimationUtils.loadAnimation(CartActivity.this, R.animator.cycle);
         gridView.setHasFixedSize(true);
 
+        dialog = new Dialog(CartActivity.this, R.style.FullHeightDialog);
+        dialog.setContentView(R.layout.reclycer_data);
+        dialog.setCancelable(false);
+
+        AddressChange = findViewById(R.id.AddressChange);
+        DeliveryAddress = findViewById(R.id.DeliveryAddress);
+
         sgen.activty_logincall = "CartActivity";
         sgen.activty_logincallnew = "CartActivity";
 
@@ -160,12 +192,41 @@ public class CartActivity extends AppCompatActivity {
 
         setdata2();
 
+        DeliveryAddress.setText("Select Address");
+        AddressChange.setText("Select");
+
         paybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(sgen.LOGIN_STATUS.toUpperCase().equals("SUCCESS")){
-                    sgen.activty_logincallnew = "PlaceOrderActivity";
-                    startActivity(new Intent(CartActivity.this, PlaceOrderActivity.class));
+                    if(operatingSystems1.size()>0){
+                        if(DeliveryAddress.getText().toString().equals("Select Address")||DeliveryAddress.getText().toString().equals("")){
+                            Toast.makeText(CartActivity.this,"Please Select Address",Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            PlaceOrder();
+                        }
+                    }
+                    else{
+                        Toast.makeText(CartActivity.this,"Cart Is Empty",Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    startActivity(new Intent(CartActivity.this,SigninActivity.class));
+                }
+            }
+        });
+
+        AddressChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(sgen.LOGIN_STATUS.toUpperCase().equals("SUCCESS")){
+                    if(sgen.Addressrecord.size() == 0){
+                        startActivityForResult(new Intent(CartActivity.this, showmap.class),1);
+                    }
+                    else{
+                        functionAlertsection1(100);
+                    }
                 }
                 else{
                     startActivity(new Intent(CartActivity.this,SigninActivity.class));
@@ -177,6 +238,126 @@ public class CartActivity extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+    }
+
+    private void functionAlertsection1(int checkedItem){
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(CartActivity.this);
+        alertDialog.setTitle("Select Address");
+
+        String selectaddress = "";
+        String selectaddressid = "";
+        for(int i = 0;i<sgen.Addressrecord.size();i++){
+            selectaddress += sgen.Addressrecord.get(i).getName()+"<#>";
+            selectaddressid += sgen.Addressrecord.get(i).getModule3()+"<#>"+sgen.Addressrecord.get(i).getModule1()+"<#>"+sgen.Addressrecord.get(i).getModule2()+"!~!~!";
+        }
+        selectaddress += "Add New Address";
+        items = selectaddress.split("<#>");
+        itemid = selectaddressid.split("!~!~!");
+        alertDialog.setSingleChoiceItems(items, checkedItem, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(!items[which].toString().equals("Add New Address")){
+                    DeliveryAddress.setText(items[which].toString());
+                    AddressSelect = items[which].toString();
+                    AddressSelectID = itemid[which].toString();
+                }
+                else{
+                    dialog.dismiss();
+                    startActivityForResult(new Intent(CartActivity.this, showmap.class),1);
+                }
+            }
+        });
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alert = alertDialog.create();
+        alert.setCanceledOnTouchOutside(false);
+        alert.show();
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            String addre = data.getStringExtra("result");
+            returnaddress = addre.split("<##>")[0];
+            sgen.CUR_Address = addre.split("<##>")[0];
+            latlang = addre.split("<##>")[1];
+            functionAlertsection2();
+        }
+    }
+
+    private void functionAlertsection2(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(sgen.CUR_CITY);
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+
+// Set up the input
+
+        final EditText input_address1 = new EditText(this);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input_address1.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_TEXT);
+        input_address1.setHint("Complete Address Line1");
+        input_address1.setFilters(new InputFilter[] {new InputFilter.LengthFilter(40)});
+        layout.addView(input_address1);
+
+        final EditText input_address2 = new EditText(this);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input_address2.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_TEXT);
+        input_address2.setHint("Complete Address Line2");
+        input_address2.setFilters(new InputFilter[] {new InputFilter.LengthFilter(40)});
+        layout.addView(input_address2);
+
+        builder.setView(layout);
+
+        String address1 = returnaddress.substring(0,40);
+        String address2 = returnaddress.substring(40,returnaddress.length());
+
+        input_address1.setText(address1);
+        input_address2.setText(address2);
+
+
+// Set up the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                getFullAddress1 = input_address1.getText().toString();
+                getFullAddress2 = input_address2.getText().toString();
+               // DeliveryAddress.setText(getFullAddress1 + getFullAddress2);
+                String addresses = getFullAddress1 + getFullAddress2;
+                Boolean b = true;
+                for(int i = 0;i<sgen.Addressrecord.size();i++){
+                    if(sgen.Addressrecord.get(0).getName().equals(addresses)){
+                        b = false;
+                        break;
+                    }
+                    else{
+                        b = true;
+                    }
+                }
+                if(b){
+                    functionAddress();
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
     }
 
     private void updatecart(){
@@ -200,6 +381,7 @@ public class CartActivity extends AppCompatActivity {
                 updatecart();
             }
             LoginID = sgen.Login_Id;
+            getshopidset();
         }
         String Query = "SELECT CONCAT(C.ID,'!~!~!',C.CART_ID,'!~!~!',C.S_ID) AS COL1," +
                 " CONCAT(SM.S_NAME,'!~!~!',C.PC_ID,'!~!~!',C.QUANTITY,'!~!~!',P.PC_NAME) AS COL2, " +
@@ -214,31 +396,38 @@ public class CartActivity extends AppCompatActivity {
         VolleyExecute.volleydynamicgetfun(CartActivity.this, "-", Query, "-", "-", "-", new VolleyExecute.VolleyCallback() {
             @Override
             public void onSuccess(ArrayList<Team> teams) {
-                ArrayList<Team> fed = teams;
-                operatingSystems1 = new ArrayList<RecyclerViewItem>();
-                for (int i = 0; i < fed.size(); i++) {
-                    try {
-                        operatingSystems1.add(new RecyclerViewItem(null,
-                                "" +fed.get(i).getcol2().split("!~!~!")[0]+"<#>" + fed.get(i).getcol2().split("!~!~!")[3],
-                                "" +  fed.get(i).getcol1().split("!~!~!")[0],
-                                "" + fed.get(i).getcol2().split("!~!~!")[2],
-                                "" + fed.get(i).getcol3(),
-                                ""+String.valueOf(Integer.parseInt(fed.get(i).getcol1().split("!~!~!")[1])),
-                                ""+fed.get(i).getcol4(),
-                                "" + fed.get(i).getcol5(),
-                                true
-                        ));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
+              if(teams.size()>0){
+                  ArrayList<Team> fed = teams;
+                  operatingSystems1 = new ArrayList<RecyclerViewItem>();
+                  for (int i = 0; i < fed.size(); i++) {
+                      try {
+                          operatingSystems1.add(new RecyclerViewItem(null,
+                                  "" +fed.get(i).getcol2().split("!~!~!")[0]+"<#>" + fed.get(i).getcol2().split("!~!~!")[3],
+                                  "" +  fed.get(i).getcol1().split("!~!~!")[0],
+                                  "" + fed.get(i).getcol2().split("!~!~!")[2],
+                                  "" + fed.get(i).getcol3(),
+                                  ""+String.valueOf(Integer.parseInt(fed.get(i).getcol1().split("!~!~!")[1])),
+                                  ""+fed.get(i).getcol4(),
+                                  "" + fed.get(i).getcol5(),
+                                  true
+                          ));
+                      } catch (Exception e) {
+                          e.printStackTrace();
+                      }
+                  }
 
-                CartActivity.operatingSystems2 = operatingSystems1;
-                GridLayoutManager layoutManager = new GridLayoutManager(CartActivity.this, 1, GridLayoutManager.VERTICAL, false);
-                gridView.setLayoutManager(layoutManager);
-                gridViewAdapter1 = new CartGridViewAdapterlayout(CartActivity.this,operatingSystems1,anim);
-                gridView.setAdapter(gridViewAdapter1);
-                setdetailsfunction();
+                  try{
+                      CartActivity.operatingSystems2 = operatingSystems1;
+                      GridLayoutManager layoutManager = new GridLayoutManager(CartActivity.this, 1, GridLayoutManager.VERTICAL, false);
+                      gridView.setLayoutManager(layoutManager);
+                      gridViewAdapter1 = new CartGridViewAdapterlayout(CartActivity.this,operatingSystems1,anim);
+                      gridView.setAdapter(gridViewAdapter1);
+                      dialog.hide();
+                      setdetailsfunction();
+                  }catch (Exception e) {
+                      e.printStackTrace();
+                  }
+              }
             }
         });
     }
@@ -308,5 +497,157 @@ public class CartActivity extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+    private void functionAddress(){
+        dialog.show();
+        String LoginID = "";
+        if(sgen.Login_Id.equals("")){
+            LoginID = sgen.getandroidID();
+        }else{
+            LoginID = sgen.Login_Id;
+        }
+
+        String Query = "CALL AUTO_C_ADDRESS('"+LoginID+"','"+getFullAddress1+"','"+getFullAddress2+"','0','0','0',STR_TO_DATE('" + sgen.gettodaydate_timemysql() + "','%m/%d/%Y %r'),'"+latlang+"');";
+        VolleyExecute.volleydynamicsavefun(CartActivity.this, "-", Query, "-", "-", "-", new VolleyExecute.VolleyCallback() {
+            @Override
+            public void onSuccess(ArrayList<Team> teams) {
+                Addressnewadd = "newAdd";
+                dbAddress();
+                Toast.makeText(CartActivity.this,"Address status: "+teams.get(0).getcol1(),Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void dbAddress(){
+        String Query = "SELECT ID AS COL1, A_ID AS COL2, C_ID AS COL3,CONCAT(C_ADD1,C_ADD2) AS COL4, LOCATION AS COL5 FROM C_ADDRESS WHERE C_ID = '"+sgen.Login_Id+"' ORDER BY ID;";
+        VolleyExecute.volleydynamicgetfun(CartActivity.this, "-", Query, "-", "-", "-", new VolleyExecute.VolleyCallback() {
+            @Override
+            public void onSuccess(ArrayList<Team> teams) {
+                if(teams.size()>0){
+                    sgen.Addressrecord = new ArrayList<>();
+                    for(int i = 0; i < teams.size(); i++){
+                        sgen.Addressrecord.add(new RecyclerViewItem(
+                                null,
+                                ""+teams.get(i).getcol4(),
+                                ""+teams.get(i).getcol1(),
+                                ""+teams.get(i).getcol2(),
+                                ""+teams.get(i).getcol3(),
+                                ""+teams.get(i).getcol5(),
+                                ""+teams.get(i).getcol5(),
+                                false
+                        ));
+                    }
+
+                    dialog.hide();
+                    if(Addressnewadd.equals("newAdd")){
+                     functionAlertsection1(0);
+                    }
+                }
+            }
+        });
+    }
+
+    private void PlaceOrder(){
+        dialog.show();
+        String Query = "SELECT CONCAT(C.ID,'!~!~!',C.CART_ID,'!~!~!',C.S_ID) AS COL1," +
+                " CONCAT(SM.S_NAME,'!~!~!',C.PC_ID,'!~!~!',C.QUANTITY,'!~!~!',P.PC_NAME) AS COL2, " +
+                "CONCAT('Rs.',truncate(SPC.PC_PRICE,2)) AS COL3,truncate((SPC.PC_PRICE * C.QUANTITY),2) AS COL4, " +
+                "CONCAT('http://Images.aasinfotech.com',substr(F.FILE_lOC,2)) AS COL5  " +
+                "FROM CART C  " +
+                "INNER JOIN SHOP_MASTER SM ON SM.S_ID = C.S_ID  " +
+                "INNER JOIN SHOP_PRODUCT_PRICE SPC ON SPC.S_ID = C.S_ID AND SPC.PC_ID = C.PC_ID  " +
+                "INNER JOIN PRODUCT_MAIN P ON P.PC_ID = C.PC_ID AND P.PC_TYPE = 'PRD' " +
+                "INNER JOIN FILE_TAB F ON F.PU_ID = P.PC_IMG_ID AND F.LINK_ID = P.PC_ID AND F.F_TYPE = 'PRD' " +
+                "WHERE C.C_ID = '"+sgen.Login_Id+"' order by C.S_ID;";
+        VolleyExecute.volleydynamicgetfun(CartActivity.this, "-", Query, "-", "-", "-", new VolleyExecute.VolleyCallback() {
+            @Override
+            public void onSuccess(ArrayList<Team> teams) {
+                if(teams.size()>0){
+                    ArrayList<Team> fed = teams;
+                    for (int i = 0; i < fed.size(); i++) {
+                        mainQuery += "CALL AUTO_ORDER_TABLE('0'," +
+                                "'"+fed.get(i).getcol2().split("!~!~!")[1]+"'," +
+                                "'"+sgen.Login_Id+"'," +
+                                "'"+fed.get(i).getcol1().split("!~!~!")[2]+"'," +
+                                "'P','C'," +
+                                "'"+fed.get(i).getcol2().split("!~!~!")[2]+"'," +
+                                "'"+fed.get(i).getcol4()+"'," +
+                                "'"+AddressSelectID.split("<#>")[1]+"'," +
+                                "STR_TO_DATE('" + sgen.gettodaydate_timemysql() + "','%m/%d/%Y %r'));";
+                    }
+
+                    VolleyExecute.volleydynamicsavefun(CartActivity.this, "-", mainQuery, "-", "-", "-", new VolleyExecute.VolleyCallback() {
+                        @Override
+                        public void onSuccess(ArrayList<Team> teams) {
+                            if(teams.get(0).getcol1().equals("Saved")){
+                                String Query = "DELETE FROM CART WHERE C_ID = '"+sgen.Login_Id+"';";
+                                VolleyExecute.volleydynamicsavefun(CartActivity.this, "-", Query, "-", "-", "-", new VolleyExecute.VolleyCallback() {
+                                    @Override
+                                    public void onSuccess(ArrayList<Team> teams) {
+                                        sendAlert();
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+        /*mainQuery = "CALL AUTO_ORDER_TABLE('0','PC_ID','C_ID','S_ID','STATUS','PAY_STATUS','QUANTITY','PAY_AMT','DELIVERY_ADD','CREATED_DATE');";*/
+    }
+
+    private void sendAlert(){
+        for(int i = 0; i < ftokensystem.size();i++){
+            VolleyExecute.volleydynamicsendalertTDPS(CartActivity.this, ftokensystem.get(i).getName(), "Order Recieved", "You Have New Order To Be Delivered", new VolleyExecute.VolleyCallback() {
+                @Override
+                public void onSuccess(ArrayList<Team> teams) {
+                }
+            });
+        }
+        dialog.hide();
+        Intent intent = new Intent(CartActivity.this, PlaceOrderActivity.class);
+        intent.putExtra("Address",DeliveryAddress.getText().toString());
+        intent.putExtra("item",itotal.getText().toString());
+        intent.putExtra("delivery",delivery.getText().toString());
+        intent.putExtra("total",gtotal.getText().toString());
+        startActivity(intent);
+        finish();
+    }
+
+    private void getshopidset(){
+        String Query = "select DISTINCT S_ID AS COL1,'-' AS COL2,'-' AS COL3,'-' AS COL4,'-' AS COL5  From CART where C_ID = '"+sgen.Login_Id+"';";
+        VolleyExecute.volleydynamicgetfun(CartActivity.this, "-", Query, "-", "-", "-", new VolleyExecute.VolleyCallback() {
+            @Override
+            public void onSuccess(ArrayList<Team> teams) {
+                if(teams.size()>0){
+                    String setshop = "";
+                    for(int i = 0; i<teams.size();i++){
+                        setshop += "'"+ teams.get(0).getcol1().toString() + "',";
+                    }
+                    setshop = setshop.substring(0,setshop.length()-1);
+                    String Query = "SELECT M.FTOKEN AS COL1, M.COMP_ID AS COL2,M.C_UNIT_ID AS COL3,LOCATION AS COL4,'-' AS COL5 FROM M_USER M WHERE M.TYPE = 'SHU' AND M.M_USERN IN ("+setshop+");";
+                    VolleyExecute.volleydynamicgetfun(CartActivity.this, "-", Query, "-", "-", "-", new VolleyExecute.VolleyCallback() {
+                        @Override
+                        public void onSuccess(ArrayList<Team> teams) {
+                            ftokensystem = new ArrayList<>();
+                            for (int i = 0; i < teams.size(); i++){
+                                ftokensystem.add(new RecyclerViewItem(
+                                        null,
+                                        ""+teams.get(0).getcol1(),
+                                        ""+teams.get(0).getcol2(),
+                                        ""+teams.get(0).getcol3(),
+                                        ""+teams.get(0).getcol4(),
+                                        "",
+                                        "",
+                                        false
+                                ));
+                            }
+                        }
+                    });
+                }
+            }
+        });
     }
 }

@@ -77,7 +77,7 @@ public class CartGridViewAdapterlayout extends RecyclerView.Adapter<RecyclerView
 
         private TextView textView,textView1,carttext,price,Tprice;
         private ImageView imageView;
-        private ImageButton add,minus;
+        private ImageButton add,minus,del;
         public MyCustomEditTextListener myCustomEditTextListener;
 
         public ItemViewHolder(@NonNull View view,MyCustomEditTextListener myCustomEditTextListener) {
@@ -90,6 +90,7 @@ public class CartGridViewAdapterlayout extends RecyclerView.Adapter<RecyclerView
             carttext = (TextView) view.findViewById(R.id.textbtntext);
             add = (ImageButton) view.findViewById(R.id.btnadd);
             minus = (ImageButton) view.findViewById(R.id.btnminus);
+            del = (ImageButton) view.findViewById(R.id.btndel);
 
             /*this.myCustomEditTextListener = myCustomEditTextListener;
             this.minus.setOnClickListener(myCustomEditTextListener);*/
@@ -118,7 +119,32 @@ public class CartGridViewAdapterlayout extends RecyclerView.Adapter<RecyclerView
        viewHolder.carttext.setText(mItemList.get(position).getModule1());
        viewHolder.price.setText(mItemList.get(position).getModule2());
        viewHolder.Tprice.setText(mItemList.get(position).getModule4());
-        adapterlayout = new CartGridViewAdapterlayout(activity,mItemList,animi);
+       adapterlayout = new CartGridViewAdapterlayout(activity,mItemList,animi);
+
+        viewHolder.del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final int pos = viewHolder.getAdapterPosition();
+                String Query = "DELETE FROM CART WHERE ID = '"+mItemList.get(pos).getModule3()+"' AND CART_ID = '"+mItemList.get(pos).getCart()+"';";
+                VolleyExecute.volleydynamicsavefun(activity, "-", Query, "-", "-", "-", new VolleyExecute.VolleyCallback() {
+                    @Override
+                    public void onSuccess(ArrayList<Team> teams) {
+                        if(teams.get(0).getcol1().equals("Saved")){
+                            try{
+                                mItemList.remove(pos);
+                                notifyItemRemoved(pos);
+                                notifyItemRangeChanged(pos, mItemList.size());
+                                adapterlayout.notifyItemChanged(pos);
+                                CartActivity.setdetailsfunction();
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
         viewHolder.add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -182,8 +208,8 @@ public class CartGridViewAdapterlayout extends RecyclerView.Adapter<RecyclerView
                 }
             }
         });
-    }
 
+    }
 
     private class MyCustomEditTextListener implements View.OnClickListener {
         private int position;

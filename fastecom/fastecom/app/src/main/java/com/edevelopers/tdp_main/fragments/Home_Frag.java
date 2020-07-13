@@ -50,9 +50,12 @@ import com.edevelopers.tdp_main.classes.AnimatedGifImageView;
 import com.edevelopers.tdp_main.models.Productcat;
 import com.edevelopers.tdp_main.models.Team;
 import com.edevelopers.tdp_main.sgen;
+import com.edevelopers.tdp_main.showmap;
 
 import java.net.URL;
 import java.util.ArrayList;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -90,7 +93,9 @@ public class Home_Frag extends Fragment {
     boolean isLoading = false;
     boolean isLoading1 = false;
     private Animation anim;
+    private String latlang;
     private Dialog dialog;
+    private TextView SelectLocation,addresshome;
 
     private int currentSize = 0;
 
@@ -138,7 +143,13 @@ public class Home_Frag extends Fragment {
         gridView3 = (RecyclerView) v.findViewById(R.id.grid3);
         gridView2 = (RecyclerView) v.findViewById(R.id.grid2);
 
+        SelectLocation = (TextView) v.findViewById(R.id.select_Location);
+        addresshome = (TextView) v.findViewById(R.id.addresshome);
+
         shoptextview = (TextView) v.findViewById(R.id.shoptextview);
+
+        addresshome.setText(sgen.CUR_Address);
+        SelectLocation.setText(sgen.CUR_CITY);
 
         dialog = new Dialog(getContext(), R.style.FullHeightDialog);
         dialog.setContentView(R.layout.reclycer_data);
@@ -159,9 +170,27 @@ public class Home_Frag extends Fragment {
             setdata4();
         }
 
+        SelectLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(getContext(), showmap.class),1);
+            }
+        });
+
         return v;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            String addre = data.getStringExtra("result");
+            addresshome.setText(addre.split("<##>")[0]);
+            sgen.CUR_Address = addre.split("<##>")[0];
+            SelectLocation.setText(sgen.CUR_CITY);
+            latlang = addre.split("<##>")[1];
+        }
+    }
 
     @Override
     public void onStart() {
@@ -312,8 +341,6 @@ public class Home_Frag extends Fragment {
             }
         });
     }
-
-
 
     private void initScrollListener() {
         gridView2.addOnScrollListener(new RecyclerView.OnScrollListener() {

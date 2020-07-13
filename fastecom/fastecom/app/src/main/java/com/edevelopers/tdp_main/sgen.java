@@ -51,6 +51,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 
+import com.edevelopers.tdp_main.adapter.RecyclerViewItem;
 import com.edevelopers.tdp_main.classes.WifiAddresses;
 import com.edevelopers.tdp_main.models.Doctors_Team;
 import com.edevelopers.tdp_main.models.Team;
@@ -86,7 +87,8 @@ public class sgen {
     /*************************************** Tracking interval variable*****************************************/
     public static int geopostion = 0;
     public static float shopradius = 10000;
-    public static String loadonceHome = "",cartload = "",activty_logincall = "",activty_logincallnew = "",cartupdate = "";
+    public static ArrayList<RecyclerViewItem> Addressrecord;
+    public static String loadonceHome = "",cartload = "",activty_logincall = "",activty_logincallnew = "",cartupdate = "",addressupdate = "";
     public static Double latitudemain = 0.00,longitudemain = 0.00;
     public static ArrayList<Team> getViewlocation = new ArrayList();
     public static String ATOKEN = "",FTOKEN = "",LOGIN_STATUS = "", CTOKEN = "", Subscribe = "ttt", unq_type = "",mq5 = "",Menu_T1 = "",senderpage = "",viewId="",backview = "";
@@ -97,7 +99,7 @@ public class sgen {
     public static double lat_addr=0;
     public static double long_addr=0;
     public static Activity activity;
-    public static  String mtitle = "TDP-E", CUR_COUNTRY = "",CUR_STATE = "", CUR_DISTRICT = "",map_addr = "",CUR_CITY = "", CUR_PstalCode = "" ;
+    public static  String mtitle = "The Daily Products", CUR_COUNTRY = "",CUR_STATE = "", CUR_DISTRICT = "",map_addr = "",CUR_CITY = "", CUR_PstalCode = "",CUR_Address = "",DatabaseAddress = "" ;
     public static StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
     public static ArrayList<Doctors_Team> B_Bitmap;
     public static final String sp_GETPASSWORDENCRYPTED = "GETPASS";

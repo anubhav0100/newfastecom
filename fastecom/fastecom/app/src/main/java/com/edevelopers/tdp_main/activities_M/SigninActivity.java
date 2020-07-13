@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.edevelopers.tdp_main.MainActivity;
 import com.edevelopers.tdp_main.R;
 import com.edevelopers.tdp_main.Services.VolleyExecute;
+import com.edevelopers.tdp_main.adapter.RecyclerViewItem;
 import com.edevelopers.tdp_main.firebase.MyFirebaseMessagingService;
 import com.edevelopers.tdp_main.models.Team;
 import com.edevelopers.tdp_main.sgen;
@@ -250,6 +251,7 @@ public class SigninActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         if(!status.equals("Failed")){
+            dbAddress();
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putString(sgen.sp_Login_Id, sgen.Login_Id);
             editor.putString(sgen.sp_Login_Id1, sgen.Login_Id1);
@@ -273,6 +275,10 @@ public class SigninActivity extends AppCompatActivity {
         if(!SqlLoginstr.equals("Failed")){
             SignIn.setEnabled(true);
 
+            if(sgen.Mobile.equals("0")){
+                startActivity(new Intent(SigninActivity.this,AddMobileActivity.class));
+                finish();
+            }
             if(sgen.activty_logincallnew.equals("PlaceOrderActivity")){
                 startActivity(new Intent(SigninActivity.this,PlaceOrderActivity.class));
                 finish();
@@ -333,6 +339,7 @@ public class SigninActivity extends AppCompatActivity {
                 }
 
                 if(!status.equals("Failed")){
+                    dbAddress();
                     LoginFirebase(sq);
                 }else{
                     dialog.hide();
@@ -544,8 +551,12 @@ public class SigninActivity extends AppCompatActivity {
 
         editor.commit();
 
-
         dialog.hide();
+
+        if(sgen.Mobile.equals("0")){
+            startActivity(new Intent(SigninActivity.this,AddMobileActivity.class));
+            finish();
+        }
         if(sgen.activty_logincallnew.equals("PlaceOrderActivity")){
             startActivity(new Intent(SigninActivity.this,PlaceOrderActivity.class));
             finish();
@@ -560,6 +571,28 @@ public class SigninActivity extends AppCompatActivity {
         }
     }
 
+
+    private void dbAddress(){
+        String Query = "SELECT ID AS COL1, A_ID AS COL2, C_ID AS COL3,CONCAT(C_ADD1,C_ADD2) AS COL4, LOCATION AS COL5 FROM C_ADDRESS WHERE C_ID = '"+sgen.Login_Id+"' ORDER BY ID;";
+        VolleyExecute.volleydynamicgetfun(SigninActivity.this, "-", Query, "-", "-", "-", new VolleyExecute.VolleyCallback() {
+            @Override
+            public void onSuccess(ArrayList<Team> teams) {
+                sgen.Addressrecord = new ArrayList<>();
+                for(int i = 0; i < teams.size(); i++){
+                    sgen.Addressrecord.add(new RecyclerViewItem(
+                            null,
+                            ""+teams.get(i).getcol4(),
+                            ""+teams.get(i).getcol1(),
+                            ""+teams.get(i).getcol2(),
+                            ""+teams.get(i).getcol3(),
+                            ""+teams.get(i).getcol5(),
+                            ""+teams.get(i).getcol5(),
+                            false
+                    ));
+                }
+            }
+        });
+    }
 
     private void functionAlert(){
         AlertDialog alertDialog = new AlertDialog.Builder(this)
