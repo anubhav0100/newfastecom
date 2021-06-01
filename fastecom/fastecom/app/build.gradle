@@ -8,7 +8,7 @@ android {
     defaultConfig {
         applicationId "com.edevelopers.tdp_main"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 3
         versionName "1.0.03"
 
